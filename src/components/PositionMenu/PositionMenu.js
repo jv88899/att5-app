@@ -10,7 +10,7 @@ const PositionMenu = props => {
                     <button
                         key={position}
                         onClick={ () => {
-                            props.selectNewPosition(position)
+                            selectNewPosition(position)
                         }}
                     >
                         {position}

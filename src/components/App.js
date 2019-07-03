@@ -48,7 +48,27 @@ class App extends Component {
         careerPER: 31
       },
     ],
-    selectedPosition: 'All'
+    selectedPosition: 'All',
+    selectedPlayers: []
+  }
+
+  componentDidMount = () => {
+    console.log('component mounted')
+    let selectedPlayers = []
+    if (this.state.selectedPosition === 'All') {
+      this.state.players.map( player => {
+        selectedPlayers.push(player)
+        return selectedPlayers
+      })
+
+      this.setState({ selectedPlayers })
+    }
+  }
+
+  selectNewPosition = newPosition => {
+    let selectedPlayers = this.state.players
+    selectedPlayers = selectedPlayers.filter( player => newPosition === 'All' || player.primaryPosition === newPosition || player.secondaryPosition === newPosition )
+    this.setState({ selectedPlayers })
   }
 
   render() {
@@ -56,9 +76,11 @@ class App extends Component {
       <div className="app">
         <h1>All Time Top 5</h1>
         <p>The best starting 5 of all time, according to you.</p>
-        <PositionMenu />
+        <PositionMenu
+          selectNewPosition={this.selectNewPosition}
+        />
         <PlayerCards
-          players={this.state.players}
+          players={this.state.selectedPlayers}
           selectedPosition={this.state.selectedPosition}
         />
       </div>
