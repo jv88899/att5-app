@@ -18,7 +18,7 @@ class App extends Component {
         assistsPerGame: 10.2,
         stealsPerGame: 2.2,
         blocksPerGame: 1.6,
-        careerPER: 33,
+        careerPER: 36,
       },
       {
         playerfirstName: 'Michael',
@@ -53,21 +53,17 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    console.log('component mounted')
-    let selectedPlayers = []
-    if (this.state.selectedPosition === 'All') {
-      this.state.players.map( player => {
-        selectedPlayers.push(player)
-        return selectedPlayers
-      })
-
-      this.setState({ selectedPlayers })
-    }
+    let selectedPlayers = this.state.players
+    selectedPlayers = selectedPlayers.sort(
+      (a, b) => (a.careerPER < b.careerPER) ? 1 : -1
+    )
+    this.setState({ selectedPlayers })
   }
 
   selectNewPosition = newPosition => {
     let selectedPlayers = this.state.players
     selectedPlayers = selectedPlayers.filter( player => newPosition === 'All' || player.primaryPosition === newPosition || player.secondaryPosition === newPosition )
+      .sort( (a, b) => (a.careerPER < b.careerPER) ? 1 : -1)
     this.setState({ selectedPlayers })
   }
 
