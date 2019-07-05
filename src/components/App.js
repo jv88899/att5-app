@@ -110,7 +110,7 @@ class App extends Component {
     let selectedPlayers = this.state.players
     selectedPlayers = selectedPlayers.filter( player => newPosition === 'All' || player.primaryPosition === newPosition || player.secondaryPosition === newPosition )
       .sort( (a, b) => (a.careerPER < b.careerPER) ? 1 : -1)
-    this.setState({ selectedPlayers })
+    this.setState({ selectedPlayers, selectedPosition: newPosition })
   }
 
   render() {
@@ -120,6 +120,7 @@ class App extends Component {
         <p>The best starting 5 of all time, according to you.</p>
         <PositionMenu
           selectNewPosition={this.selectNewPosition}
+          currentPosition={this.state.selectedPosition}
         />
         <AllTimeStartingFive />
         <PlayerCards

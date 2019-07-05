@@ -1,14 +1,16 @@
 import React from 'react'
 
 const PositionMenu = props => {
-    const { selectNewPosition } = props
+    const { selectNewPosition, currentPosition } = props
     const positions = ['All', 'PG', 'SG', 'SF', 'PF', 'C']
+    console.log('current position', currentPosition)
     return (
         <div className="position-menu-container">
             {
                 positions.map( position => (
                     <button
                         key={position}
+                        style={ position === currentPosition ? { color: 'rgb(187, 46, 31' } : null }
                         onClick={ () => {
                             selectNewPosition(position)
                         }}
