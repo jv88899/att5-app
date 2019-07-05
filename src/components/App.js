@@ -8,7 +8,7 @@ class App extends Component {
   state = {
     players: [
       {
-        playerfirstName: 'LeBron',
+        playerFirstName: 'LeBron',
         playerLastName: 'James',
         playerFullName: 'LeBron James',
         position: ['SF', 'PF'],
@@ -20,9 +20,10 @@ class App extends Component {
         stealsPerGame: 2.2,
         blocksPerGame: 1.6,
         careerPER: 36,
+        imgURL: 'https://nba-players.herokuapp.com/players/james/lebron'
       },
       {
-        playerfirstName: 'Michael',
+        playerFirstName: 'Michael',
         playerLastName: 'Jordan',
         playerFullName: 'Michael Jordan',
         position: 'SG',
@@ -32,10 +33,11 @@ class App extends Component {
         assistsPerGame: 5.2,
         stealsPerGame: 2.8,
         blocksPerGame: 1.2,
-        careerPER: 32
+        careerPER: 32,
+        imgURL: ''
       },
       {
-        playerfirstName: 'Kevin',
+        playerFirstName: 'Kevin',
         playerLastName: 'Durant',
         playerFullName: 'Kevin Durant',
         position: ['PF', 'SF'],
@@ -46,10 +48,11 @@ class App extends Component {
         assistsPerGame: 6.2,
         stealsPerGame: 2.1,
         blocksPerGame: 2.1,
-        careerPER: 31
+        careerPER: 31,
+        imgURL: 'https://nba-players.herokuapp.com/players/durant/kevin'
       },
       {
-        playerfirstName: 'Damian',
+        playerFirstName: 'Damian',
         playerLastName: 'Lillard',
         playerFullName: 'Damian Lillard',
         position: 'PG',
@@ -60,9 +63,10 @@ class App extends Component {
         stealsPerGame: 3.2,
         blocksPerGame: 1.1,
         careerPER: 29,
+        imgURL: 'https://nba-players.herokuapp.com/players/lillard/damian'
       },
       {
-        playerfirstName: 'Hakeem',
+        playerFirstName: 'Hakeem',
         playerLastName: 'Olajuwon',
         playerFullName: 'Hakeem Olajuwon',
         position: 'C',
@@ -73,7 +77,22 @@ class App extends Component {
         stealsPerGame: 1.2,
         blocksPerGame: 3.6,
         careerPER: 27,
+        imgURL: ''
       },
+      {
+        playerFirstName: 'Stephen',
+        playerLastName: 'Curry',
+        playerFullName: 'Stephen Curry',
+        position: 'PG',
+        primaryPosition: 'PG',
+        pointsPerGame: 33.8,
+        reboundsPerGame: 4.3,
+        assistsPerGame: 11.6,
+        stealsPerGame: 3.2,
+        blocksPerGame: 0.8,
+        careerPER: 33,
+        imgURL: 'https://nba-players.herokuapp.com/players/curry/stephen'
+      }
     ],
     selectedPosition: 'All',
     selectedPlayers: []
