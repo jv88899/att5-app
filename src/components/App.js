@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PositionMenu from './PositionMenu/PositionMenu'
 import PlayerCards from './PlayerCards/PlayerCards'
+import AllTimeStartingFive from './AllTimeStartingFive/AllTimeStartingFive'
 import './App.css'
 
 class App extends Component {
@@ -47,6 +48,32 @@ class App extends Component {
         blocksPerGame: 2.1,
         careerPER: 31
       },
+      {
+        playerfirstName: 'Damian',
+        playerLastName: 'Lillard',
+        playerFullName: 'Damian Lillard',
+        position: 'PG',
+        primaryPosition: 'PG',
+        pointsPerGame: 26.2,
+        reboundsPerGame: 6.4,
+        assistsPerGame: 12.2,
+        stealsPerGame: 3.2,
+        blocksPerGame: 1.1,
+        careerPER: 29,
+      },
+      {
+        playerfirstName: 'Hakeem',
+        playerLastName: 'Olajuwon',
+        playerFullName: 'Hakeem Olajuwon',
+        position: 'C',
+        primaryPosition: 'C',
+        pointsPerGame: 24.1,
+        reboundsPerGame: 14.4,
+        assistsPerGame: 4.2,
+        stealsPerGame: 1.2,
+        blocksPerGame: 3.6,
+        careerPER: 27,
+      },
     ],
     selectedPosition: 'All',
     selectedPlayers: []
@@ -75,6 +102,7 @@ class App extends Component {
         <PositionMenu
           selectNewPosition={this.selectNewPosition}
         />
+        <AllTimeStartingFive />
         <PlayerCards
           players={this.state.selectedPlayers}
           selectedPosition={this.state.selectedPosition}
