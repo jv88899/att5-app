@@ -1,8 +1,12 @@
 import React from 'react'
 
-const AllTimeStartingFive = () => {
+const AllTimeStartingFive = props => {
+    const { selectAllTimeStartingFive } = props
     return (
-        <button className="all-time-starting-five">
+        <button
+            className="all-time-starting-five"
+            onClick={selectAllTimeStartingFive}
+        >
             All Time Starting Five
         </button>
     )

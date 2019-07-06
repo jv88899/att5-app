@@ -3,7 +3,6 @@ import './player-card.css'
 
 const PlayerCard = props => {
     const { player } = props
-    console.log(player);
     return (
         <div
             className="player-card"

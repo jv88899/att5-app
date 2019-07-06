@@ -3,7 +3,6 @@ import React from 'react'
 const PositionMenu = props => {
     const { selectNewPosition, currentPosition } = props
     const positions = ['All', 'PG', 'SG', 'SF', 'PF', 'C']
-    console.log('current position', currentPosition)
     return (
         <div className="position-menu-container">
             {
