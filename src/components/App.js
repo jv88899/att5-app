@@ -41,8 +41,8 @@ class App extends Component {
         playerLastName: 'Durant',
         playerFullName: 'Kevin Durant',
         position: ['PF', 'SF'],
-        primaryPosition: 'SF',
-        secondaryPosition: 'PF',
+        primaryPosition: 'PF',
+        secondaryPosition: 'SF',
         pointsPerGame: 31.2,
         reboundsPerGame: 9.4,
         assistsPerGame: 6.2,
@@ -108,13 +108,68 @@ class App extends Component {
   }
 
   selectNewPosition = newPosition => {
-    let players = this.state.players
-    players = players.filter( player => newPosition === 'All' || player.primaryPosition === newPosition || player.secondaryPosition === newPosition )
+    const { players } = this.state
+    const newSelectedPlayers = players.filter( player => newPosition === 'All' || player.primaryPosition === newPosition || player.secondaryPosition === newPosition )
       .sort( (a, b) => (a.careerPER < b.careerPER) ? 1 : -1)
-    this.setState({ players, selectedPosition: newPosition })
+    this.setState({
+      selectedPosition: newPosition,
+      selectedPlayers: newSelectedPlayers
+    })
   }
 
+  selectAllTimeStartingFive = () => {
+    const { players } = this.state
+    let allTimeStartingFive = []
+    let pgPER = 0
+    let sgPER = 0
+    let sfPER = 0
+    let pfPER = 0
+    let cPER = 0
+    let topPG = ''
+    let topSG = ''
+    let topSF = ''
+    let topPF = ''
+    let topC = ''
 
+    for (let i = 0; i < players.length; i++) {
+      if (players[i].primaryPosition === 'PG') {
+        if (players[i].careerPER > pgPER) {
+          pgPER = players[i].careerPER
+          topPG = players[i]
+        }
+      } else if (players[i].primaryPosition === 'SG') {
+        if (players[i].careerPER > sgPER) {
+          sgPER = players[i].careerPER
+          topSG = players[i]
+        }
+      } else if (players[i].primaryPosition === 'SF') {
+        if (players[i].careerPER > sfPER) {
+          sfPER = players[i].careerPER
+          topSF = players[i]
+        }
+      } else if (players[i].primaryPosition === 'PF') {
+        if (players[i].careerPER > pfPER) {
+          pfPER = players[i].careerPER
+          topPF = players[i]
+        }
+      } else if (players[i].primaryPosition === 'C') {
+        if (players[i].careerPER > cPER) {
+          cPER = players[i].careerPER
+          topC = players[i]
+        }
+      }
+    }
+
+    allTimeStartingFive.push(topPG)
+    allTimeStartingFive.push(topSG)
+    allTimeStartingFive.push(topSF)
+    allTimeStartingFive.push(topPF)
+    allTimeStartingFive.push(topC)
+
+    this.setState({
+      selectedPlayers: allTimeStartingFive
+    })
+  }
 
   render() {
     return (
@@ -125,7 +180,9 @@ class App extends Component {
           selectNewPosition={this.selectNewPosition}
           currentPosition={this.state.selectedPosition}
         />
-        <AllTimeStartingFive />
+        <AllTimeStartingFive
+          selectAllTimeStartingFive={this.selectAllTimeStartingFive}
+        />
         <PlayerCards
           players={this.state.selectedPlayers}
           selectedPosition={this.state.selectedPosition}
