@@ -2,25 +2,17 @@ import React from 'react'
 import './player-card.css'
 
 const PlayerCard = props => {
-    const { players } = props
+    const { player } = props
+    console.log(player);
     return (
-        <React.Fragment>
-            {
-                players.map( player => {
-                    return (
-                        <div
-                            key={player.playerFullName}
-                            className="player-card"
-                        >
-                            <h3>{player.primaryPosition}</h3>
-                            <img src={player.imgURL} alt={player.playerFullName}/>
-                            <h2>{player.playerFullName}</h2>
-                            <p>Total Score: {player.careerPER}</p>
-                        </div>
-                    )
-                })
-            }
-        </React.Fragment>
+        <div
+            className="player-card"
+        >
+            <h3>{player.primaryPosition}</h3>
+            <img src={player.imgURL} alt={player.playerFullName} />
+            <h2>{player.playerFullName}</h2>
+            <p>Total Score: {player.careerPER}</p>
+        </div>
     )
 }
 
