@@ -100,11 +100,18 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    let selectedPlayers = this.state.players
-    selectedPlayers = selectedPlayers.sort(
-      (a, b) => (a.careerPER < b.careerPER) ? 1 : -1
-    )
-    this.setState({ selectedPlayers })
+    this.getInitialPlayers()
+      .then(res => this.setState({ selectedPlayers: res.players }) )
+  }
+
+  getInitialPlayers = async () => {
+    const response = await fetch('/express_backend')
+    const body = await response.json()
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+    return body
   }
 
   selectNewPosition = newPosition => {
