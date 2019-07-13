@@ -15,14 +15,14 @@ class App extends Component {
   componentDidMount = () => {
     this.getInitialPlayers()
       .then(res => this.setState({
-        selectedPlayers: res.players,
-        players: res.players
+        selectedPlayers: res.data.players,
+        players: res.data.players
       }) )
       .catch(err => console.log(err))
   }
 
   getInitialPlayers = async () => {
-    const response = await fetch('/express_backend')
+    const response = await fetch('/api/v1/players')
     const body = await response.json()
 
     if (response.status !== 200) {
