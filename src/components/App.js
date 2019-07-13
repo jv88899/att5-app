@@ -91,7 +91,8 @@ class App extends Component {
     allTimeStartingFive.push(topC)
 
     this.setState({
-      selectedPlayers: allTimeStartingFive
+      selectedPlayers: allTimeStartingFive,
+      selectedPosition: 'all-time'
     })
   }
 
@@ -105,6 +106,7 @@ class App extends Component {
           currentPosition={this.state.selectedPosition}
         />
         <AllTimeStartingFive
+          currentPosition={this.state.selectedPosition}
           selectAllTimeStartingFive={this.selectAllTimeStartingFive}
         />
         <PlayerCards
