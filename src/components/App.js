@@ -111,7 +111,6 @@ class App extends Component {
         />
         <PlayerCards
           players={this.state.selectedPlayers}
-          selectedPosition={this.state.selectedPosition}
         />
       </div>
     )
