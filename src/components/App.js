@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import PositionMenu from './PositionMenu/PositionMenu'
-import PlayerCards from './PlayerCards/PlayerCards'
 import AllTimeStartingFive from './AllTimeStartingFive/AllTimeStartingFive'
+import CriteriaForm from './CriteriaForm/CriteriaForm'
+import PlayerCards from './PlayerCards/PlayerCards'
+import PositionMenu from './PositionMenu/PositionMenu'
 import './App.css'
 
 class App extends Component {
@@ -9,7 +10,14 @@ class App extends Component {
     players: [],
     selectedPosition: 'All',
     selectedPlayers: [],
-    allTimeStartingFive: []
+    allTimeStartingFive: [],
+    criteria: {
+      per: 1,
+      championships: 1,
+      ppg: 1,
+      mvp: 1,
+      allNBA: 1
+    }
   }
 
   componentDidMount = () => {
@@ -96,6 +104,10 @@ class App extends Component {
     })
   }
 
+  handleCriteriaFormSubmit = (newCritera) => {
+    this.setState({ criteria: newCritera })
+  }
+
   render() {
     return (
       <div className="app">
@@ -108,6 +120,9 @@ class App extends Component {
         <AllTimeStartingFive
           currentPosition={this.state.selectedPosition}
           selectAllTimeStartingFive={this.selectAllTimeStartingFive}
+        />
+        <CriteriaForm
+          handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
         />
         <PlayerCards
           players={this.state.selectedPlayers}
