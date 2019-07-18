@@ -79,7 +79,7 @@ class CriteriaForm extends Component {
         const { handleCriteriaFormSubmit } = this.props
         return (
             <form
-                className="criteria-form"
+                className="criteria-form-container"
                 onSubmit={this.handleSubmit}
             >
                 <select

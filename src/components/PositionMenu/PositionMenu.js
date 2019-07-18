@@ -1,4 +1,5 @@
 import React from 'react'
+import './position-menu.css'
 
 const PositionMenu = props => {
     const { selectNewPosition, currentPosition } = props

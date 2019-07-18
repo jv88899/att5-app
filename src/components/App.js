@@ -132,19 +132,26 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <h1>All Time Top 5</h1>
-        <p>The best starting 5 of all time, according to you.</p>
-        <PositionMenu
-          selectNewPosition={this.selectNewPosition}
-          currentPosition={this.state.selectedPosition}
-        />
-        <AllTimeStartingFive
-          currentPosition={this.state.selectedPosition}
-          selectAllTimeStartingFive={this.selectAllTimeStartingFive}
-        />
-        <CriteriaForm
-          handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
-        />
+        <div className="app-header">
+          <div className="app-header-wrapper">
+            <h1>All Time Top 5</h1>
+            <p>The best starting 5 of all time, according to you.</p>
+            <CriteriaForm
+              handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
+            />
+            <div className="app-menu-container">
+              <PositionMenu
+                selectNewPosition={this.selectNewPosition}
+                currentPosition={this.state.selectedPosition}
+              />
+              <AllTimeStartingFive
+                currentPosition={this.state.selectedPosition}
+                selectAllTimeStartingFive={this.selectAllTimeStartingFive}
+              />
+            </div>
+
+          </div>
+        </div>
         <PlayerCards
           players={this.state.selectedPlayers}
           calculateScore={this.calculateScore}

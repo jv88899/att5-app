@@ -1,4 +1,5 @@
 import React from 'react'
+import './all-time-starting-five.css'
 
 const AllTimeStartingFive = props => {
     const { selectAllTimeStartingFive, currentPosition } = props
