@@ -21,11 +21,27 @@ class App extends Component {
   }
 
   componentDidMount = () => {
+    // this.getInitialPlayers()
+    //   .then(res => this.setState({
+    //     selectedPlayers: res.data.players,
+    //     players: res.data.players
+    //   }) )
+    //   .catch(err => console.log(err))
     this.getInitialPlayers()
       .then(res => this.setState({
         selectedPlayers: res.data.players,
         players: res.data.players
-      }) )
+      }))
+      .then( () => {
+        this.selectNewPosition('All')
+      })
+      .then( () => {
+        // console.log(this.calculateScore(this.state.players[0]))
+        const newPlayers = this.state.players.sort( (a, b) => (this.calculateScore(a) < this.calculateScore(b) ? 1 : -1) )
+        this.setState({
+          selectedPlayers: newPlayers
+        })
+      })
       .catch(err => console.log(err))
   }
 
@@ -36,6 +52,7 @@ class App extends Component {
     if (response.status !== 200) {
       throw Error(body.message)
     }
+    // console.log(`body = `, body)
     return body
   }
 
@@ -104,11 +121,24 @@ class App extends Component {
     })
   }
 
+  calculateScore = player => {
+    let tier1 = ( (0.5 * player.reboundsPerGame) + (0.5 * player.stealsPerGame) + (0.5 * player.blocksPerGame) )
+    let tier2 = ( (1.0 * player.pointsPerGame) + (1.0 * player.assistsPerGame) + (1.0 * player.allNBAThird) )
+    let tier3 = ( (1.5 * player.careerPER) + (1.5 * player.allNBASecond) )
+    let tier4 = ( (2.0 * player.championships) + (2.0 * player.allNBAFirst) + (2.0 * player.mvp) + (2.0 * player.dpoy) )
+    let tier5 = ( (2.5 * player.finalsMVP) )
+    let totalScore = tier1 + tier2 + tier3 + tier4 + tier5
+    console.log(`player is ${player.playerFullName} and score is ${totalScore}`)
+    return totalScore
+    // console.log(player)
+  }
+
   handleCriteriaFormSubmit = (newCritera) => {
     this.setState({ criteria: newCritera })
   }
 
   render() {
+    // console.log(`player score = `, this.calculateScore(this.state.players[0]))
     return (
       <div className="app">
         <h1>All Time Top 5</h1>
@@ -126,6 +156,7 @@ class App extends Component {
         />
         <PlayerCards
           players={this.state.selectedPlayers}
+          calculateScore={this.calculateScore}
         />
       </div>
     )

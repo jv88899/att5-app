@@ -2,7 +2,7 @@ import React from 'react'
 import './player-card.css'
 
 const PlayerCard = props => {
-    const { player } = props
+    const { player, calculateScore } = props
     return (
         <div
             className="player-card"
@@ -10,7 +10,7 @@ const PlayerCard = props => {
             <h3>{player.primaryPosition}</h3>
             <img src={player.imgURL} alt={player.playerFullName} />
             <h2>{player.playerFullName}</h2>
-            <p>Total Score: {player.careerPER}</p>
+            <p>Total Score: {calculateScore(player)}</p>
         </div>
     )
 }

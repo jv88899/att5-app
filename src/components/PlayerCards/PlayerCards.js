@@ -2,7 +2,7 @@ import React from 'react'
 import PlayerCard from '../PlayerCard/PlayerCard'
 
 const PlayerCards = props => {
-    const { players } = props
+    const { players, calculateScore } = props
     return (
         <div className="player-cards">
             {
@@ -11,6 +11,7 @@ const PlayerCards = props => {
                         <PlayerCard
                             key={player.playerFullName}
                             player={player}
+                            calculateScore={calculateScore}
                         />
                     )
                 })
