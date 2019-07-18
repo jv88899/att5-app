@@ -52,7 +52,7 @@ class App extends Component {
 
   selectNewPosition = newPosition => {
     const { players } = this.state
-    const newSelectedPlayers = players.filter( player => newPosition === 'All' || player.primaryPosition === newPosition || player.secondaryPosition === newPosition )
+    const newSelectedPlayers = players.filter( player => newPosition === 'All' || player.primaryPosition === newPosition )
       .sort( (a, b) => (a.careerPER < b.careerPER) ? 1 : -1)
     this.setState({
       selectedPosition: newPosition,
