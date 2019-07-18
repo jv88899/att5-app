@@ -3,69 +3,64 @@ import './criteria-form.css'
 
 class CriteriaForm extends Component {
     state = {
-        newCriteria: {
-            newPER: 1,
-            newChampionships: 1,
-            newPPG: 1,
-            newMVP: 1,
-            newAllNBA: 1
+        criteria: {
+            per: 1,
+            championships: 1,
+            ppg: 1,
+            mvp: 1,
+            allNBA: 1
         }
     }
 
     handleCriteriaChange = (criteriaToUpdate, newValue) => {
         if (criteriaToUpdate === 'per') {
-            console.log(criteriaToUpdate, newValue)
             this.setState( (prevState) => ({
-                newCriteria: {
-                    newPER: 1 + (newValue * 0.1),
-                    newChampionships: prevState.newCriteria.newChampionships,
-                    newPPG: prevState.newCriteria.newPPG,
-                    newMVP: prevState.newCriteria.newMVP,
-                    newAllNBA: prevState.newCriteria.newAllNBA
+                criteria: {
+                    per: 1 + (newValue * 0.1),
+                    championships: prevState.criteria.championships,
+                    ppg: prevState.criteria.ppg,
+                    mvp: prevState.criteria.mvp,
+                    allNBA: prevState.criteria.allNBA
                 }
             }))
         } else if (criteriaToUpdate === 'championships') {
-            console.log(criteriaToUpdate, newValue)
             this.setState( prevState => ({
-                newCriteria: {
-                    newPER: prevState.newCriteria.newPER,
-                    newChampionships: 1 + (newValue * 0.1),
-                    newPPG: prevState.newCriteria.newPPG,
-                    newMVP: prevState.newCriteria.newMVP,
-                    newAllNBA: prevState.newCriteria.newAllNBA
+                criteria: {
+                    per: prevState.criteria.per,
+                    championships: 1 + (newValue * 0.1),
+                    ppg: prevState.criteria.ppg,
+                    mvp: prevState.criteria.mvp,
+                    allNBA: prevState.criteria.allNBA
                 }
             }))
         } else if (criteriaToUpdate === 'ppg') {
-            console.log(criteriaToUpdate, newValue)
             this.setState( prevState => ({
-                newCriteria: {
-                    newPER: prevState.newCriteria.newPER,
-                    newChampionships: prevState.newCriteria.newChampionships,
-                    newPPG: 1 + (newValue * 0.1),
-                    newMVP: prevState.newCriteria.newMVP,
-                    newAllNBA: prevState.newCriteria.newAllNBA
+                criteria: {
+                    per: prevState.criteria.per,
+                    championships: prevState.criteria.championships,
+                    ppg: 1 + (newValue * 0.1),
+                    mvp: prevState.criteria.mvp,
+                    allNBA: prevState.criteria.allNBA
                 }
             }))
         } else if (criteriaToUpdate === 'mvp') {
-            console.log(criteriaToUpdate, newValue)
             this.setState( prevState => ({
-                newCriteria: {
-                    newPER: prevState.newCriteria.newPER,
-                    newChampionships: prevState.newCriteria.newChampionships,
-                    newPPG: prevState.newCriteria.newPPG,
-                    newMVP: 1 + (newValue * 0.1),
-                    newAllNBA: prevState.newCriteria.newAllNBA
+                criteria: {
+                    per: prevState.criteria.per,
+                    championships: prevState.criteria.championships,
+                    ppg: prevState.criteria.ppg,
+                    mvp: 1 + (newValue * 0.1),
+                    allNBA: prevState.criteria.allNBA
                 }
             }))
         } else if (criteriaToUpdate === 'allNBA') {
-            console.log(criteriaToUpdate, newValue)
             this.setState( prevState => ({
-                newCriteria: {
-                    newPER: prevState.newCriteria.newPER,
-                    newChampionships: prevState.newCriteria.newChampionships,
-                    newPPG: prevState.newCriteria.newPPG,
-                    newMVP: prevState.newCriteria.newMVP,
-                    newAllNBA: 1 + (newValue * 0.1)
+                criteria: {
+                    per: prevState.criteria.per,
+                    championships: prevState.criteria.championships,
+                    ppg: prevState.criteria.ppg,
+                    mvp: prevState.criteria.mvp,
+                    allNBA: 1 + (newValue * 0.1)
                 }
             }))
         }
@@ -87,6 +82,9 @@ class CriteriaForm extends Component {
                     onChange={ (e) => {
                         let criteria = 'per'
                         let newPer = e.target.value
+                        // console.log(typeof newPer)
+                        newPer = parseFloat(newPer)
+                        // console.log(typeof newPer)
                         this.handleCriteriaChange(criteria, newPer)
                     }}
                 >
@@ -104,8 +102,8 @@ class CriteriaForm extends Component {
                     name="championships"
                     onChange={ (e) => {
                         let criteria = 'championships'
-                        let newChampionships = Number(e.target.value)
-                        console.log(typeof newChampionships)
+                        let newChampionships = parseFloat(e.target.value)
+                        // console.log(typeof newChampionships)
                         this.handleCriteriaChange(criteria, newChampionships)
                     } }
                 >
@@ -123,7 +121,7 @@ class CriteriaForm extends Component {
                     name="ppg"
                     onChange={ e => {
                         let criteria = 'ppg'
-                        let newPPG = e.target.value
+                        let newPPG = parseFloat(e.target.value)
                         this.handleCriteriaChange(criteria, newPPG)
                     } }
                 >
@@ -141,7 +139,7 @@ class CriteriaForm extends Component {
                     name="mvp"
                     onChange= { e => {
                         let criteria = 'mvp'
-                        let newMVP = e.target.value
+                        let newMVP = parseFloat(e.target.value)
                         this.handleCriteriaChange(criteria, newMVP)
                     }}
                 >
@@ -159,7 +157,7 @@ class CriteriaForm extends Component {
                     name="allNBA"
                     onChange={ e => {
                         let criteria = 'allNBA'
-                        let newAllNBA = e.target.value
+                        let newAllNBA = parseFloat(e.target.value)
                         this.handleCriteriaChange(criteria, newAllNBA)
                     }}
                 >
@@ -176,7 +174,7 @@ class CriteriaForm extends Component {
                 <button
                     type="submit"
                     onClick={ () => {
-                        handleCriteriaFormSubmit(this.state.newCriteria)
+                        handleCriteriaFormSubmit(this.state.criteria)
                     }}
                 >
                     Set Criteria

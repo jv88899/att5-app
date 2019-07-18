@@ -12,11 +12,11 @@ class App extends Component {
     selectedPlayers: [],
     allTimeStartingFive: [],
     criteria: {
-      per: 1,
-      championships: 1,
-      ppg: 1,
-      mvp: 1,
-      allNBA: 1
+      per: 0,
+      championships: 0,
+      ppg: 0,
+      mvp: 0,
+      allNBA: 0
     }
   }
 
@@ -34,6 +34,7 @@ class App extends Component {
         this.setState({
           selectedPlayers: newPlayers
         })
+        console.log(this.state.criteria)
       })
       .catch(err => console.log(err))
   }
@@ -115,10 +116,11 @@ class App extends Component {
   }
 
   calculateScore = player => {
+    const { per, championships, ppg, mvp, allNBA } = this.state.criteria
     let tier1 = ( (0.5 * player.reboundsPerGame) + (0.5 * player.stealsPerGame) + (0.5 * player.blocksPerGame) )
-    let tier2 = ( (1.0 * player.pointsPerGame) + (1.0 * player.assistsPerGame) + (1.0 * player.allNBAThird) )
-    let tier3 = ( (1.5 * player.careerPER) + (1.5 * player.allNBASecond) )
-    let tier4 = ( (2.0 * player.championships) + (2.0 * player.allNBAFirst) + (2.0 * player.mvp) + (2.0 * player.dpoy) )
+    let tier2 = ( ((1 + (ppg * 0.1)) * player.pointsPerGame) + (1.0 * player.assistsPerGame) + (1.0 * player.allNBAThird) )
+    let tier3 = ( ((1.5 + (per * 0.1)) * player.careerPER) + (1.5 * player.allNBASecond) )
+    let tier4 = ( ((2 + (championships * .1)) * player.championships) + ((2.0 + (allNBA * 0.1)) * player.allNBAFirst) + ((2.0 + (mvp * 0.1)) * player.mvp) + (2.0 * player.dpoy) )
     let tier5 = ( (2.5 * player.finalsMVP) )
     let totalScore = tier1 + tier2 + tier3 + tier4 + tier5
 
@@ -126,7 +128,10 @@ class App extends Component {
   }
 
   handleCriteriaFormSubmit = (newCritera) => {
-    this.setState({ criteria: newCritera })
+    console.log(`new criteria`, newCritera)
+    this.setState({ criteria: newCritera }, () => {
+      console.log(`criteria is now`, this.state.criteria)
+    })
   }
 
   render() {
