@@ -16,7 +16,7 @@ class CriteriaForm extends Component {
         if (criteriaToUpdate === 'per') {
             this.setState( (prevState) => ({
                 criteria: {
-                    per: 1 + (newValue * 0.1),
+                    per: newValue,
                     championships: prevState.criteria.championships,
                     ppg: prevState.criteria.ppg,
                     mvp: prevState.criteria.mvp,
@@ -27,7 +27,7 @@ class CriteriaForm extends Component {
             this.setState( prevState => ({
                 criteria: {
                     per: prevState.criteria.per,
-                    championships: 1 + (newValue * 0.1),
+                    championships: newValue,
                     ppg: prevState.criteria.ppg,
                     mvp: prevState.criteria.mvp,
                     allNBA: prevState.criteria.allNBA
@@ -38,7 +38,7 @@ class CriteriaForm extends Component {
                 criteria: {
                     per: prevState.criteria.per,
                     championships: prevState.criteria.championships,
-                    ppg: 1 + (newValue * 0.1),
+                    ppg: newValue,
                     mvp: prevState.criteria.mvp,
                     allNBA: prevState.criteria.allNBA
                 }
@@ -49,7 +49,7 @@ class CriteriaForm extends Component {
                     per: prevState.criteria.per,
                     championships: prevState.criteria.championships,
                     ppg: prevState.criteria.ppg,
-                    mvp: 1 + (newValue * 0.1),
+                    mvp: newValue,
                     allNBA: prevState.criteria.allNBA
                 }
             }))
@@ -60,7 +60,7 @@ class CriteriaForm extends Component {
                     championships: prevState.criteria.championships,
                     ppg: prevState.criteria.ppg,
                     mvp: prevState.criteria.mvp,
-                    allNBA: 1 + (newValue * 0.1)
+                    allNBA: newValue
                 }
             }))
         }
