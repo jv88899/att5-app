@@ -4,6 +4,7 @@
     /* flex-direction: column; */
     flex-wrap: wrap;
     justify-content: center;
+    margin: 0 10px;
 }
 
 @media (min-width: 576px) {
