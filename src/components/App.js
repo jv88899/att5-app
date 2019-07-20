@@ -140,7 +140,7 @@ class App extends Component {
       <div className="app">
         <div className="app-header">
           <div className="app-header-wrapper">
-            <h1>All Time Top 5</h1>
+            <h1>All Time Starting 5</h1>
             <p>The best starting 5 of all time, according to you.</p>
             <CriteriaForm
               handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
