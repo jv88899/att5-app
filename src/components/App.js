@@ -22,24 +22,15 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getInitialPlayers()
-      .then(res => this.setState({
+      .then( res => this.setState({
         selectedPlayers: res.data.players,
         players: res.data.players
       }))
-      .then( () => {
-        this.selectNewPosition('All')
-      })
-      .then( () => {
-        const newPlayers = this.state.players.sort( (a, b) => (this.calculateScore(a) < this.calculateScore(b) ? 1 : -1) )
-        this.setState({
-          selectedPlayers: newPlayers
-        })
-      })
-      .catch(err => console.log(err))
+      .catch( err => console.log(err))
   }
 
   getInitialPlayers = async () => {
-    const response = await fetch('/api/v1/players')
+    const response = await fetch('/api/v3/players/All')
     const body = await response.json()
 
     if (response.status !== 200) {
