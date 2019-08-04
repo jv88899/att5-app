@@ -40,13 +40,17 @@ class App extends Component {
     return body
   }
 
-  selectNewPosition = newPosition => {
-    const { players } = this.state
-    const newSelectedPlayers = players.filter( player => newPosition === 'All' || player.primaryPosition === newPosition )
-      .sort( (a, b) => (a.careerPER < b.careerPER) ? 1 : -1)
+  selectNewPosition = async newPosition => {
+    const response = await fetch(`/api/v3/players/${newPosition}`)
+    const body = await response.json()
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+
     this.setState({
-      selectedPosition: newPosition,
-      selectedPlayers: newSelectedPlayers
+      selectedPlayers: body.data.players,
+      selectedPosition: newPosition
     })
   }
 
