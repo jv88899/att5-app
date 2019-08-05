@@ -31,6 +31,7 @@ const PlayerCard = props => {
             >
                 <h5>{player.primaryPosition}</h5>
                 <h2>{player.playerFullName}</h2>
+                <h3>{player.score}</h3>
             </div>
             <div
                 className="player-card-footer"

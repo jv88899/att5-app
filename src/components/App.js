@@ -121,12 +121,25 @@ class App extends Component {
     return totalScore
   }
 
-  handleCriteriaFormSubmit = (newCritera) => {
-    this.setState({ criteria: newCritera }, () => {
-      const newPlayers = this.state.players.sort( (a, b) => (this.calculateScore(a) < this.calculateScore(b) ? 1 : -1) )
-      this.setState({
-        selectedPlayers: newPlayers
-      })
+  handleCriteriaFormSubmit = async newCritera => {
+    const response = await fetch('/api/v3/players', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newCritera)
+    })
+    const body = await response.json()
+    const newPlayers = body.data.players
+    console.log('body', body)
+
+    if (response.status !== 200) {
+      throw Error(body.message)
+    }
+
+    this.setState({
+      selectedPlayers: newPlayers
     })
   }
 
