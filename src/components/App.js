@@ -41,6 +41,14 @@ class App extends Component {
   }
 
   selectNewPosition = async newPosition => {
+    // when a person selects a position, it should be a post route so
+    // that I can pass the criteria to the person
+    // critirea should be updated in state, look into that
+
+    // set up a post request
+    // send the selectPosition and the criteria to the post request
+    // return some stuff
+
     const response = await fetch(`/api/v3/players/${newPosition}`)
     const body = await response.json()
 
@@ -139,7 +147,8 @@ class App extends Component {
     }
 
     this.setState({
-      selectedPlayers: newPlayers
+      selectedPlayers: newPlayers,
+      criteria: newCritera
     })
   }
 

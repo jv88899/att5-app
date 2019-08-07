@@ -77,7 +77,7 @@ class CriteriaForm extends Component {
                 className="criteria-form-container"
                 onSubmit={this.handleSubmit}
             >
-                <label for="per">PER</label>
+                <label htmlFor="per">PER</label>
                 <select
                     name="per"
                     onChange={ (e) => {
@@ -99,7 +99,7 @@ class CriteriaForm extends Component {
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <label for="championships">Championships</label>
+                <label htmlFor="championships">Championships</label>
                 <select
                     name="championships"
                     onChange={ (e) => {
@@ -119,7 +119,7 @@ class CriteriaForm extends Component {
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <label for="ppg">PPG</label>
+                <label htmlFor="ppg">PPG</label>
                 <select
                     name="ppg"
                     onChange={ e => {
@@ -138,7 +138,7 @@ class CriteriaForm extends Component {
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <label for="mvp">MVP</label>
+                <label htmlFor="mvp">MVP</label>
                 <select
                     name="mvp"
                     onChange= { e => {
@@ -157,7 +157,7 @@ class CriteriaForm extends Component {
                     <option value="8">8</option>
                     <option value="9">9</option>
                 </select>
-                <label for="allNBA">All NBA</label>
+                <label htmlFor="allNBA">All NBA</label>
                 <select
                     name="allNBA"
                     onChange={ e => {
