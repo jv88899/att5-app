@@ -77,18 +77,6 @@ class App extends Component {
 
   }
 
-  calculateScore = player => {
-    const { per, championships, ppg, mvp, allNBA } = this.state.criteria
-    let tier1 = ( (0.5 * player.reboundsPerGame) + (0.5 * player.stealsPerGame) + (0.5 * player.blocksPerGame) )
-    let tier2 = ( (ppg * player.pointsPerGame) + (1.0 * player.assistsPerGame) + (1.0 * player.allNBAThird) )
-    let tier3 = ( (per * player.careerPER) + (1.5 * player.allNBASecond) )
-    let tier4 = ( (championships * player.championships) + (allNBA * player.allNBAFirst) + (mvp * player.mvp) + (2.0 * player.dpoy) )
-    let tier5 = ( (2.5 * player.finalsMVP) )
-    let totalScore = tier1 + tier2 + tier3 + tier4 + tier5
-
-    return totalScore
-  }
-
   handleCriteriaFormSubmit = async newCritera => {
     const response = await fetch('/api/v3/players', {
       method: 'POST',
