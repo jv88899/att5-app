@@ -41,23 +41,23 @@ class App extends Component {
   }
 
   selectNewPosition = async newPosition => {
-    // when a person selects a position, it should be a post route so
-    // that I can pass the criteria to the person
-    // critirea should be updated in state, look into that
+    const { criteria } = this.state
+    const response = await fetch('/api/v3/players/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        criteria,
+        selectedPosition: newPosition
+      })
+    })
 
-    // set up a post request
-    // send the selectPosition and the criteria to the post request
-    // return some stuff
-
-    const response = await fetch(`/api/v3/players/${newPosition}`)
     const body = await response.json()
 
-    if (response.status !== 200) {
-      throw Error(body.message)
-    }
-
     this.setState({
-      selectedPlayers: body.data.players,
+      selectedPlayers: body.players,
       selectedPosition: newPosition
     })
   }
@@ -77,17 +77,21 @@ class App extends Component {
 
   }
 
-  handleCriteriaFormSubmit = async newCritera => {
+  handleCriteriaFormSubmit = async newCriteria => {
+    console.log('at this ponit', newCriteria)
     const response = await fetch('/api/v3/players', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newCritera)
+      body: JSON.stringify({
+        criteria: newCriteria,
+        selectedPosition: this.state.selectedPosition
+      })
     })
     const body = await response.json()
-    const newPlayers = body.data.players
+    const newPlayers = body.players
     console.log('body', body)
 
     if (response.status !== 200) {
@@ -96,7 +100,7 @@ class App extends Component {
 
     this.setState({
       selectedPlayers: newPlayers,
-      criteria: newCritera
+      criteria: newCriteria
     })
   }
 
