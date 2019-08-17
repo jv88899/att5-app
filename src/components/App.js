@@ -63,22 +63,32 @@ class App extends Component {
   }
 
   selectAllTimeStartingFive = async () => {
-    let response = await fetch('/api/v3/players/all-time')
+    const { criteria } = this.state
+    const response = await fetch('/api/v3/players/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        selectedPosition: 'all-time',
+        criteria
+      })
+    })
     const body = await response.json()
+    const newPlayers = body.players
 
     if (response.status !== 200) {
       throw Error(body.message)
     }
 
     this.setState({
-      selectedPlayers: body.data.players,
+      selectedPlayers: newPlayers,
       selectedPosition: 'all-time'
     })
-
   }
 
   handleCriteriaFormSubmit = async newCriteria => {
-    console.log('at this ponit', newCriteria)
     const response = await fetch('/api/v3/players', {
       method: 'POST',
       headers: {
@@ -92,7 +102,6 @@ class App extends Component {
     })
     const body = await response.json()
     const newPlayers = body.players
-    console.log('body', body)
 
     if (response.status !== 200) {
       throw Error(body.message)
