@@ -1,30 +1,73 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { FaInfoCircle } from 'react-icons/fa'
 import './player-card.css'
 
-const PlayerCard = props => {
-    const { player } = props
-    return (
-        <div
-            className="player-card"
-        >
+class PlayerCard extends Component {
+    state = {
+        modalVisible: false
+    }
+
+    handleClick = () => {
+
+    }
+
+    render() {
+        const { player, handleSelectScoreInformation } = this.props
+        return (
             <div
-                className="player-card-image"
+                className="player-card"
             >
-                <img src={player.imgURL} alt={player.playerFullName} />
+
+                <div
+                    className="player-card-image"
+                >
+                    <img src={player.imgURL} alt={player.playerFullName} />
+                </div>
+                <div
+                    className="player-card-information"
+                >
+                    <p>{player.primaryPosition}</p>
+                    <h2>{player.playerFullName}</h2>
+                </div>
+                <div
+                    className="player-card-footer"
+                >
+                    <h3>Score: {player.score}</h3>
+                    <FaInfoCircle
+                        size={36}
+                        onClick={() => handleSelectScoreInformation(player)}
+                    />
+                </div>
             </div>
-            <div
-                className="player-card-information"
-            >
-                <h5>{player.primaryPosition}</h5>
-                <h2>{player.playerFullName}</h2>
-                <h3>{player.score}</h3>
-            </div>
-            <div
-                className="player-card-footer"
-            >
-            </div>
-        </div>
-    )
+        )
+    }
 }
+
+// const PlayerCard = props => {
+//     const { player } = props
+//     return (
+//         <div
+//             className="player-card"
+//         >
+//             <div
+//                 className="player-card-image"
+//             >
+//                 <img src={player.imgURL} alt={player.playerFullName} />
+//             </div>
+//             <div
+//                 className="player-card-information"
+//             >
+//                 <p>{player.primaryPosition}</p>
+//                 <h2>{player.playerFullName}</h2>
+//             </div>
+//             <div
+//                 className="player-card-footer"
+//             >
+//                 <h3>Score: {player.score}</h3>
+//                 <FaInfoCircle size={36} />
+//             </div>
+//         </div>
+//     )
+// }
 
 export default PlayerCard

@@ -1,24 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PlayerCard from '../PlayerCard/PlayerCard'
 import './player-cards.css'
 
-const PlayerCards = props => {
-    const { players, calculateScore } = props
-    return (
-        <div className="player-cards">
-            {
-                players.map( player => {
-                    return (
-                        <PlayerCard
-                            key={player.playerFullName}
-                            player={player}
-                            calculateScore={calculateScore}
-                        />
-                    )
-                })
-            }
-        </div>
-    )
+class PlayerCards extends Component {
+    render() {
+        const { players, calculateScore, handleSelectScoreInformation } = this.props
+        return(
+            <div className="player-cards">
+                {
+                    players.map( player => {
+                        return (
+                            <div
+                                key={player.playerFullName}
+                            >
+                                <PlayerCard
+                                    key={player.playerFullName}
+                                    player={player}
+                                    calculateScore={calculateScore}
+                                    handleSelectScoreInformation={handleSelectScoreInformation}
+                                />
+                            </div>
+                        )
+                    })
+                }
+            </div>
+        )
+    }
 }
 
 export default PlayerCards

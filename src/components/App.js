@@ -3,6 +3,7 @@ import AllTimeStartingFive from './AllTimeStartingFive/AllTimeStartingFive'
 import CriteriaForm from './CriteriaForm/CriteriaForm'
 import PlayerCards from './PlayerCards/PlayerCards'
 import PositionMenu from './PositionMenu/PositionMenu'
+import ScoreInformationModal from './ScoreInformationModal/ScoreInformationModal'
 import './App.css'
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
     players: [],
     selectedPosition: 'All',
     selectedPlayers: [],
+    selectedPlayer: null,
     allTimeStartingFive: [],
     criteria: {
       per: 1,
@@ -17,14 +19,15 @@ class App extends Component {
       ppg: 1,
       mvp: 1,
       allNBA: 1
-    }
+    },
+    scoreInformationModalVisible: false
   }
 
   componentDidMount = () => {
     this.getInitialPlayers()
       .then( res => this.setState({
         selectedPlayers: res.data.players,
-        players: res.data.players
+        players: res.data.players,
       }))
       .catch( err => console.log(err))
   }
@@ -50,7 +53,7 @@ class App extends Component {
       },
       body: JSON.stringify({
         criteria,
-        selectedPosition: newPosition
+        selectedPosition: newPosition,
       })
     })
 
@@ -113,6 +116,17 @@ class App extends Component {
     })
   }
 
+  handleSelectScoreInformation = selectedPlayer => {
+    this.setState({
+      selectedPlayer,
+      scoreInformationModalVisible: !this.state.scoreInformationModalVisible
+    })
+  }
+
+  handleCloseSelectScoreInformation = () => {
+    this.setState({ scoreInformationModalVisible: !this.state.scoreInformationModalVisible })
+  }
+
   render() {
     return (
       <div className="app">
@@ -139,6 +153,12 @@ class App extends Component {
         <PlayerCards
           players={this.state.selectedPlayers}
           calculateScore={this.calculateScore}
+          handleSelectScoreInformation={this.handleSelectScoreInformation}
+        />
+        <ScoreInformationModal
+          visible={this.state.scoreInformationModalVisible}
+          hideModal={this.handleCloseSelectScoreInformation}
+          selectedPlayer={this.state.selectedPlayer}
         />
       </div>
     )

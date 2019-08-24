@@ -1,0 +1,24 @@
+.score-information-modal-container {
+    align-items: center;
+    background-color: black;
+    display: none;
+    height: 100vh;
+    justify-content: center;
+    /* left: 0;
+    position: absolute;
+    top: 0; */
+    width: 100%;
+}
+
+.score-information-modal {
+    background-color: #fff;
+    height: 400px;
+    width: 250px;
+}
+
+.score-information-modal-container.visible {
+    display: flex;
+    left: 0;
+    position: fixed;
+    top: 0;
+}

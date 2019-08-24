@@ -3,8 +3,17 @@
     display: flex;
     /* flex-direction: column; */
     flex-wrap: wrap;
+    height: 100%;
     justify-content: center;
     margin: 0 10px;
+}
+
+.score-information-wrapper {
+    display: flex;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 @media (min-width: 576px) {
