@@ -1,0 +1,6 @@
+.player-battle-container {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 1rem 1rem 0.5rem 1rem;
+}

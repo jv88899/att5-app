@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AllTimeStartingFive from './AllTimeStartingFive/AllTimeStartingFive'
 import CriteriaForm from './CriteriaForm/CriteriaForm'
+import PlayerBattle from './PlayerBattle/PlayerBattle'
 import PlayerCards from './PlayerCards/PlayerCards'
 import PositionMenu from './PositionMenu/PositionMenu'
 import ScoreInformationModal from './ScoreInformationModal/ScoreInformationModal'
@@ -20,7 +21,9 @@ class App extends Component {
       mvp: 1,
       allNBA: 1
     },
-    scoreInformationModalVisible: false
+    scoreInformationModalVisible: false,
+    playerOne: null,
+    playerTwo: null
   }
 
   componentDidMount = () => {
@@ -127,6 +130,30 @@ class App extends Component {
     this.setState({ scoreInformationModalVisible: !this.state.scoreInformationModalVisible })
   }
 
+  handlePlayerInputSubmit = async (player, playerNumber) => {
+    const response = await fetch('/api/v3/battle', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        newCriteria: this.state.criteria,
+        player
+      })
+    })
+
+    const body = await response.json()
+    const selectedPlayer = await body.player
+    console.log(selectedPlayer)
+
+    if (playerNumber === 'First Player') {
+      this.setState({ playerOne: selectedPlayer })
+    } else if (playerNumber === 'Second Player') {
+      this.setState({ playerTwo: selectedPlayer })
+    }
+  }
+
   render() {
     return (
       <div className="app">
@@ -147,9 +174,13 @@ class App extends Component {
                 selectAllTimeStartingFive={this.selectAllTimeStartingFive}
               />
             </div>
-
           </div>
         </div>
+        <PlayerBattle
+          handleSubmit={this.handlePlayerInputSubmit}
+          playerOne={this.state.playerOne}
+          playerTwo={this.state.playerTwo}
+        />
         <PlayerCards
           players={this.state.selectedPlayers}
           calculateScore={this.calculateScore}
