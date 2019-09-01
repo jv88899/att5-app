@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import AllTimeStartingFive from './AllTimeStartingFive/AllTimeStartingFive'
 import CriteriaForm from './CriteriaForm/CriteriaForm'
 import PlayerBattle from './PlayerBattle/PlayerBattle'
@@ -156,42 +157,64 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <div className="app-header">
-          <div className="app-header-wrapper">
-            <h1>All Time Starting 5</h1>
-            <p>The best starting 5 of all time, according to you.</p>
-            <CriteriaForm
-              handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
-            />
-            <div className="app-menu-container">
-              <PositionMenu
-                selectNewPosition={this.selectNewPosition}
-                currentPosition={this.state.selectedPosition}
+      <Router>
+        <div className="app">
+          <div className="app-header">
+            <div className="app-header-wrapper">
+              <h1>All Time Starting 5</h1>
+              <p>The best starting 5 of all time, according to you.</p>
+              <CriteriaForm
+                handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
               />
-              <AllTimeStartingFive
-                currentPosition={this.state.selectedPosition}
-                selectAllTimeStartingFive={this.selectAllTimeStartingFive}
-              />
+              <div className="navigation">
+                <ul>
+                  <li>
+                    <Link to="/">All Time Starting Five</Link>
+                  </li>
+                  <li>
+                    <Link to="/battle">Battle</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="app-menu-container">
+                <PositionMenu
+                  selectNewPosition={this.selectNewPosition}
+                  currentPosition={this.state.selectedPosition}
+                />
+                <AllTimeStartingFive
+                  currentPosition={this.state.selectedPosition}
+                  selectAllTimeStartingFive={this.selectAllTimeStartingFive}
+                />
+              </div>
             </div>
           </div>
+          <Route
+            path='/'
+            exact={true}
+            render={ (props) => <PlayerCards {...props}
+                players={this.state.selectedPlayers}
+                calculateScore={this.calculateScore}
+                handleSelectScoreInformation={this.handleSelectScoreInformation}
+              />
+            }
+          />
+          <Route
+            path='/battle'
+            exact={true}
+            render={ props => <PlayerBattle {...props}
+                handleSubmit={this.handlePlayerInputSubmit}
+                playerOne={this.state.playerOne}
+                playerTwo={this.state.playerTwo}
+              />
+            }
+          />
+          <ScoreInformationModal
+            visible={this.state.scoreInformationModalVisible}
+            hideModal={this.handleCloseSelectScoreInformation}
+            selectedPlayer={this.state.selectedPlayer}
+          />
         </div>
-        <PlayerBattle
-          handleSubmit={this.handlePlayerInputSubmit}
-          playerOne={this.state.playerOne}
-          playerTwo={this.state.playerTwo}
-        />
-        <PlayerCards
-          players={this.state.selectedPlayers}
-          calculateScore={this.calculateScore}
-          handleSelectScoreInformation={this.handleSelectScoreInformation}
-        />
-        <ScoreInformationModal
-          visible={this.state.scoreInformationModalVisible}
-          hideModal={this.handleCloseSelectScoreInformation}
-          selectedPlayer={this.state.selectedPlayer}
-        />
-      </div>
+      </Router>
     )
   }
 }
