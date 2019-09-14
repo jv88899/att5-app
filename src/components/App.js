@@ -73,7 +73,7 @@ class App extends Component {
   }
 
   selectAllTimeStartingFive = async () => {
-    const { criteria } = this.state
+    const { criteria, searchCriteria } = this.state
     const response = await fetch('/api/v3/players/', {
       method: 'POST',
       headers: {
@@ -82,7 +82,8 @@ class App extends Component {
       },
       body: JSON.stringify({
         selectedPosition: 'all-time',
-        criteria
+        criteria,
+        searchCriteria
       })
     })
     const body = await response.json()
