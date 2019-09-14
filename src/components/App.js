@@ -25,7 +25,8 @@ class App extends Component {
     },
     scoreInformationModalVisible: false,
     playerOne: null,
-    playerTwo: null
+    playerTwo: null,
+    searchCriteria: ''
   }
 
   componentDidMount = () => {
@@ -49,7 +50,7 @@ class App extends Component {
   }
 
   selectNewPosition = async newPosition => {
-    const { criteria } = this.state
+    const { criteria, searchCriteria } = this.state
     const response = await fetch('/api/v3/players/', {
       method: 'POST',
       headers: {
@@ -59,6 +60,7 @@ class App extends Component {
       body: JSON.stringify({
         criteria,
         selectedPosition: newPosition,
+        searchCriteria
       })
     })
 
@@ -165,7 +167,8 @@ class App extends Component {
       },
       body: JSON.stringify({
         newCriteria: this.state.criteria,
-        searchTerm
+        searchTerm,
+        selectedPosition: this.state.selectedPosition
       })
     })
 
@@ -174,7 +177,9 @@ class App extends Component {
     console.log('search results are ', searchResults)
 
     this.setState({
-      selectedPlayers: searchResults
+      selectedPlayers: searchResults,
+      searchCriteria: searchTerm,
+      selectedPosition: this.state.selectedPosition
     })
   }
 
