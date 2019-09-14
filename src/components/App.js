@@ -4,6 +4,7 @@ import AllTimeStartingFive from './AllTimeStartingFive/AllTimeStartingFive'
 import CriteriaForm from './CriteriaForm/CriteriaForm'
 import PlayerBattle from './PlayerBattle/PlayerBattle'
 import PlayerCards from './PlayerCards/PlayerCards'
+import PlayerSearch from './PlayerSearch/PlayerSearch'
 import PositionMenu from './PositionMenu/PositionMenu'
 import ScoreInformationModal from './ScoreInformationModal/ScoreInformationModal'
 import './App.css'
@@ -155,6 +156,28 @@ class App extends Component {
     }
   }
 
+  handlePlayerSearchChange = async searchTerm => {
+    const response = await fetch('/api/v3/search', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        newCriteria: this.state.criteria,
+        searchTerm
+      })
+    })
+
+    const body = await response.json()
+    const searchResults = await body.searchResults
+    console.log('search results are ', searchResults)
+
+    this.setState({
+      selectedPlayers: searchResults
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -186,6 +209,9 @@ class App extends Component {
                   selectAllTimeStartingFive={this.selectAllTimeStartingFive}
                 />
               </div>
+              <PlayerSearch
+                handlePlayerSearchChange={this.handlePlayerSearchChange}
+              />
             </div>
           </div>
           <Route

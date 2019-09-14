@@ -15,7 +15,6 @@ class PlayerInput extends Component {
   
     handleChange = e => {
       this.setState({ playerName: e.target.value })
-      console.log(this.state.playerName)
     }
   
     render() {
