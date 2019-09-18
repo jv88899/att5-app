@@ -7,8 +7,9 @@ class PlayerCard extends Component {
         modalVisible: false
     }
 
-    handleClick = () => {
-
+    handleClick = e => {
+        e.preventDefault()
+        console.log('working at playercard')
     }
 
     render() {
@@ -16,6 +17,7 @@ class PlayerCard extends Component {
         return (
             <div
                 className="player-card"
+                onClick={this.handleClick}
             >
 
                 <div
@@ -31,43 +33,20 @@ class PlayerCard extends Component {
                 </div>
                 <div
                     className="player-card-footer"
+                    onClick={ () => console.log('workinggggggggg')}
                 >
                     <h3>Score: {player.score}</h3>
                     <FaInfoCircle
                         size={36}
-                        onClick={() => handleSelectScoreInformation(player)}
+                        onClick={e => {
+                            e.stopPropagation()
+                            handleSelectScoreInformation(player)
+                        }}
                     />
                 </div>
             </div>
         )
     }
 }
-
-// const PlayerCard = props => {
-//     const { player } = props
-//     return (
-//         <div
-//             className="player-card"
-//         >
-//             <div
-//                 className="player-card-image"
-//             >
-//                 <img src={player.imgURL} alt={player.playerFullName} />
-//             </div>
-//             <div
-//                 className="player-card-information"
-//             >
-//                 <p>{player.primaryPosition}</p>
-//                 <h2>{player.playerFullName}</h2>
-//             </div>
-//             <div
-//                 className="player-card-footer"
-//             >
-//                 <h3>Score: {player.score}</h3>
-//                 <FaInfoCircle size={36} />
-//             </div>
-//         </div>
-//     )
-// }
 
 export default PlayerCard

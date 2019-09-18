@@ -36,9 +36,7 @@ class PlayerBattle extends Component {
                     playerTwo={this.props.playerTwo}
                 />
                 {
-                    (this.props.playerOne === null || this.props.playerTwo === null) && winner === null
-                        ? null
-                        : <p>The winner is {winner}</p>
+                    winner && <p>The winner is {winner}</p>
                 }
                 </div>
                 {
