@@ -4,19 +4,22 @@ import './player-card.css'
 
 class PlayerCard extends Component {
     state = {
-        modalVisible: false
+        modalVisible: false,
+        active: false
     }
 
     handleClick = e => {
         e.preventDefault()
-        console.log('working at playercard')
+        this.setState({ active: !this.state.active })
     }
 
     render() {
         const { player, handleSelectScoreInformation } = this.props
+        let cssClass = 'player-card'
+        this.state.active ? cssClass = 'player-card active' : cssClass = 'player-card'
         return (
             <div
-                className="player-card"
+                className={cssClass}
                 onClick={this.handleClick}
             >
 
