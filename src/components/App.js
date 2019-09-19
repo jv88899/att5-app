@@ -26,7 +26,8 @@ class App extends Component {
     scoreInformationModalVisible: false,
     playerOne: null,
     playerTwo: null,
-    searchCriteria: ''
+    searchCriteria: '',
+    playersToCompare: []
   }
 
   componentDidMount = () => {
@@ -184,6 +185,16 @@ class App extends Component {
     })
   }
 
+  addPlayerToCompare = (player) => {
+    const { playersToCompare } = this.state
+    if (playersToCompare.filter(p => p._id === player._id).length > 0) {
+      let newPlayersToCompare = playersToCompare.filter( newPlayer => newPlayer._id !== player._id)
+      this.setState({ playersToCompare: newPlayersToCompare })
+    } else {
+      this.setState({ playersToCompare: playersToCompare.concat(player) })
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -227,6 +238,7 @@ class App extends Component {
                 players={this.state.selectedPlayers}
                 calculateScore={this.calculateScore}
                 handleSelectScoreInformation={this.handleSelectScoreInformation}
+                addPlayerToCompare={this.addPlayerToCompare}
               />
             }
           />
