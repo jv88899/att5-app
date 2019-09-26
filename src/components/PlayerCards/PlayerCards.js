@@ -5,7 +5,7 @@ import './player-cards.css'
 class PlayerCards extends Component {
     
     render() {
-        const { players, calculateScore, handleSelectScoreInformation, addPlayerToCompare } = this.props
+        const { players, handleSelectScoreInformation, addPlayerToCompare } = this.props
         return(
             <div className="player-cards">
                 {
@@ -17,7 +17,6 @@ class PlayerCards extends Component {
                                 <PlayerCard
                                     key={player.playerFullName}
                                     player={player}
-                                    calculateScore={calculateScore}
                                     handleSelectScoreInformation={handleSelectScoreInformation}
                                     addPlayerToCompare={addPlayerToCompare}
                                 />

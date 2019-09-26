@@ -12,7 +12,6 @@ class PlayerSearch extends Component {
     }
 
     handleChange = e => {
-        // this.setState({ searchTerm: e.target.value})
         this.setState({
             searchTerm: e.target.value,
             searching: true
@@ -29,7 +28,6 @@ class PlayerSearch extends Component {
     }
 
     render() {
-        console.log('props', this.props)
         return (
             <form>
                 <label htmlFor="player-name">

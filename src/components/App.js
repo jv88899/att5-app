@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import AllTimeStartingFive from './AllTimeStartingFive/AllTimeStartingFive'
 import CriteriaForm from './CriteriaForm/CriteriaForm'
+import MultiPlayerCompare from './MultiPlayerCompare/MultiPlayerCompare'
 import PlayerBattle from './PlayerBattle/PlayerBattle'
 import PlayerCards from './PlayerCards/PlayerCards'
 import PlayerSearch from './PlayerSearch/PlayerSearch'
@@ -109,7 +110,8 @@ class App extends Component {
       },
       body: JSON.stringify({
         criteria: newCriteria,
-        selectedPosition: this.state.selectedPosition
+        selectedPosition: this.state.selectedPosition,
+        searchCriteria: this.state.searchCriteria
       })
     })
     const body = await response.json()
@@ -195,7 +197,12 @@ class App extends Component {
     }
   }
 
+  clearPlayersToCompare = () => {
+    this.setState({ playersToCompare: [] })
+  }
+
   render() {
+    console.log('length of state ', this.state.playersToCompare.length)
     return (
       <Router>
         <div className="app">
@@ -214,6 +221,12 @@ class App extends Component {
                   <li>
                     <Link to="/battle">Battle</Link>
                   </li>
+                  {
+                    this.state.playersToCompare.length >= 2 &&
+                    <li>
+                      <Link to="/results">Compare Players</Link>
+                    </li>
+                  }
                 </ul>
               </div>
               <div className="app-menu-container">
@@ -249,6 +262,17 @@ class App extends Component {
                 handleSubmit={this.handlePlayerInputSubmit}
                 playerOne={this.state.playerOne}
                 playerTwo={this.state.playerTwo}
+              />
+            }
+          />
+          <Route
+            path='/results'
+            exact={true}
+            render={ props => <MultiPlayerCompare {...props}
+                handleSelectScoreInformation={this.handleSelectScoreInformation}
+                addPlayerToCompare={this.addPlayerToCompare}
+                playersToCompare={this.state.playersToCompare}
+                clearPlayersToCompare={this.clearPlayersToCompare}
               />
             }
           />

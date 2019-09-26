@@ -6,6 +6,10 @@ class PlayerBattle extends Component {
     state = {
         playerOne: null,
         playerTwo: null,
+        playersToCompare: []
+    }
+
+    componentDidMount = () => {
     }
 
     handleClick = () => {

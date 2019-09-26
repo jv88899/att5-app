@@ -3,7 +3,6 @@ import './score-information-modal.css'
 
 const ScoreInformationModal = props => {
     const { visible, hideModal, selectedPlayer } = props
-    console.log('props = ', props)
     let classes = 'score-information-modal-container'
 
     if (visible) {

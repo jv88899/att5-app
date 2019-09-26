@@ -18,7 +18,6 @@ class PlayerInput extends Component {
     }
   
     render() {
-      console.log('playerinput props =', this.props)
       return (
         <div className="player-input-container">
         { this.props.playerOne === null || this.props.playerTwo === null ? 

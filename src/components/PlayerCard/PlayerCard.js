@@ -10,6 +10,7 @@ class PlayerCard extends Component {
 
     handleClick = (e, player) => {
         // e.preventDefault()
+        console.log('player here is', player)
         this.setState({ active: !this.state.active })
         this.props.addPlayerToCompare(player)
     }
@@ -39,7 +40,7 @@ class PlayerCard extends Component {
                 </div>
                 <div
                     className="player-card-footer"
-                    onClick={ () => console.log('workinggggggggg')}
+                    onClick={ () => console.log('workinggggggggg') }
                 >
                     <h3>Score: {player.score}</h3>
                     <FaInfoCircle
