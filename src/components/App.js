@@ -214,34 +214,33 @@ class App extends Component {
                 handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
               />
               <div className="navigation">
-                <ul>
-                  <li>
-                    <Link to="/">All Time Starting Five</Link>
-                  </li>
-                  <li>
-                    <Link to="/battle">Battle</Link>
-                  </li>
-                  {
-                    this.state.playersToCompare.length >= 2 &&
-                    <li>
-                      <Link to="/results">Compare Players</Link>
-                    </li>
-                  }
-                </ul>
+                <span>
+                  <Link to="/">All Time Starting Five</Link>
+                </span>
+                <span>
+                  <Link to="/battle">Battle</Link>
+                </span>
+                <span>
+                    <Link to="/results">Compare Players</Link>
+                </span>
               </div>
               <div className="app-menu-container">
-                <PositionMenu
-                  selectNewPosition={this.selectNewPosition}
-                  currentPosition={this.state.selectedPosition}
-                />
-                <AllTimeStartingFive
-                  currentPosition={this.state.selectedPosition}
-                  selectAllTimeStartingFive={this.selectAllTimeStartingFive}
-                />
+                <div className="position-menu">
+                  <PositionMenu
+                    selectNewPosition={this.selectNewPosition}
+                    currentPosition={this.state.selectedPosition}
+                  />
+                  <AllTimeStartingFive
+                    currentPosition={this.state.selectedPosition}
+                    selectAllTimeStartingFive={this.selectAllTimeStartingFive}
+                  />
+                </div>
+                <div>
+                  <PlayerSearch
+                    handlePlayerSearchChange={this.handlePlayerSearchChange}
+                  />
+                </div>
               </div>
-              <PlayerSearch
-                handlePlayerSearchChange={this.handlePlayerSearchChange}
-              />
             </div>
           </div>
           <Route

@@ -34,4 +34,28 @@ body {
 
 .app-menu-container {
   display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+}
+
+.navigation {
+  margin: 25px 0;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.navigation span {
+  border: 1px solid black;
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: 15px;
+  padding: 20px 0;
+  text-align: center;
+  width: 200px;
+}
+
+.position-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
 }

@@ -33,21 +33,17 @@ class PlayerSearch extends Component {
                 <label htmlFor="player-name">
                     Search for a player
                 </label>
-                <input
-                    type="text"
-                    id="player-search"
-                    className="player-search-input"
-                    placeholder="type player name"
-                    autoComplete="off"
-                    value={this.state.searchTerm}
-                    onChange={this.handleChange}
-                />
-                <button
-                    type="submit"
-                    disabled={!this.state.playerName}
-                >
-                    Search
-                </button>
+                <div>
+                    <input
+                        type="text"
+                        id="player-search"
+                        className="player-search-input"
+                        placeholder="type player name"
+                        autoComplete="off"
+                        value={this.state.searchTerm}
+                        onChange={this.handleChange}
+                    />
+                </div>
             </form>
         )
     }
