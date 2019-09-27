@@ -12,8 +12,16 @@
 
 .score-information-modal {
     background-color: #fff;
-    height: 400px;
-    width: 250px;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.score-information-modal-player-image img {
+    border-bottom: 2px solid black;
+    max-width: 100%;
 }
 
 .score-information-modal-container.visible {
@@ -21,4 +29,23 @@
     left: 0;
     position: fixed;
     top: 0;
+}
+
+.close-button {
+    align-items: center;
+    background: blueviolet;
+    border: none;
+    color: whitesmoke;
+    display: flex;
+    font-size: 20px;
+    height: 55px;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.close-button:hover {
+    background: violet;
+    transition: all 0.6s ease;
 }

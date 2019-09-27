@@ -8,10 +8,18 @@ const ScoreInformationModal = props => {
     if (visible) {
         classes = 'score-information-modal-container visible'
     }
+
+    console.log('selectedplyaer is', selectedPlayer)
     return (
         <div className={classes}>
             <div className="score-information-modal">
-                <div>
+                <div className="score-information-modal-player-image">
+                    <img
+                        src={ selectedPlayer ? selectedPlayer.imgURL : null }
+                        alt={ selectedPlayer ? selectedPlayer.playerFullName : null }
+                    />
+                </div>
+                <div className="score-information-modal-player-name">
                     {selectedPlayer ? <p>{selectedPlayer.playerFullName}</p> : null}
                 </div>
                 <div>
