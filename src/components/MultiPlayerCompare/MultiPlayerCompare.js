@@ -7,10 +7,6 @@ class MultiPlayerCompare extends Component {
         playersToCompare: []
     }
 
-    componentDidMount = () => {
-        // this.props.clearPlayersToCompare()
-    }
-
     componentWillUnmount = () => {
         this.props.clearPlayersToCompare()
     }

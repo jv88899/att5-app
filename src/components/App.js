@@ -102,6 +102,7 @@ class App extends Component {
   }
 
   handleCriteriaFormSubmit = async newCriteria => {
+    const { selectedPosition, searchCriteria } = this.state
     const response = await fetch('/api/v3/players', {
       method: 'POST',
       headers: {
@@ -110,8 +111,8 @@ class App extends Component {
       },
       body: JSON.stringify({
         criteria: newCriteria,
-        selectedPosition: this.state.selectedPosition,
-        searchCriteria: this.state.searchCriteria
+        selectedPosition: selectedPosition,
+        searchCriteria: searchCriteria
       })
     })
     const body = await response.json()
@@ -202,7 +203,15 @@ class App extends Component {
   }
 
   render() {
-    console.log('length of state ', this.state.playersToCompare.length)
+    const { 
+      selectedPosition,
+      selectedPlayers,
+      selectedPlayer,
+      scoreInformationModalVisible,
+      playerOne,
+      playerTwo,
+      playersToCompare
+    } = this.state
     return (
       <Router>
         <div className="app">
@@ -228,10 +237,10 @@ class App extends Component {
                 <div className="position-menu">
                   <PositionMenu
                     selectNewPosition={this.selectNewPosition}
-                    currentPosition={this.state.selectedPosition}
+                    currentPosition={selectedPosition}
                   />
                   <AllTimeStartingFive
-                    currentPosition={this.state.selectedPosition}
+                    currentPosition={selectedPosition}
                     selectAllTimeStartingFive={this.selectAllTimeStartingFive}
                   />
                 </div>
@@ -247,7 +256,7 @@ class App extends Component {
             path='/'
             exact={true}
             render={ (props) => <PlayerCards {...props}
-                players={this.state.selectedPlayers}
+                players={selectedPlayers}
                 calculateScore={this.calculateScore}
                 handleSelectScoreInformation={this.handleSelectScoreInformation}
                 addPlayerToCompare={this.addPlayerToCompare}
@@ -260,8 +269,8 @@ class App extends Component {
             exact={true}
             render={ props => <PlayerBattle {...props}
                 handleSubmit={this.handlePlayerInputSubmit}
-                playerOne={this.state.playerOne}
-                playerTwo={this.state.playerTwo}
+                playerOne={playerOne}
+                playerTwo={playerTwo}
               />
             }
           />
@@ -271,16 +280,16 @@ class App extends Component {
             render={ props => <MultiPlayerCompare {...props}
                 handleSelectScoreInformation={this.handleSelectScoreInformation}
                 addPlayerToCompare={this.addPlayerToCompare}
-                playersToCompare={this.state.playersToCompare}
+                playersToCompare={playersToCompare}
                 clearPlayersToCompare={this.clearPlayersToCompare}
-                selectedPlayers={this.state.selectedPlayers}
+                selectedPlayers={selectedPlayers}
               />
             }
           />
           <ScoreInformationModal
-            visible={this.state.scoreInformationModalVisible}
+            visible={scoreInformationModalVisible}
             hideModal={this.handleCloseSelectScoreInformation}
-            selectedPlayer={this.state.selectedPlayer}
+            selectedPlayer={selectedPlayer}
           />
         </div>
       </Router>
