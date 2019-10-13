@@ -1,3 +1,8 @@
 .position-menu-container {
     padding: 1rem;
+    width: 40%;
+}
+
+.position-menu-container button {
+    width: 50px;
 }

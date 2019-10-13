@@ -11,13 +11,17 @@ class MultiPlayerCompare extends Component {
         // this.props.clearPlayersToCompare()
     }
 
+    componentWillUnmount = () => {
+        this.props.clearPlayersToCompare()
+    }
+
     render() {
-        this.state.playersToCompare.sort( (a, b) => a.score < b.score ? 1 : -1 )
+        // this.state.playersToCompare.sort( (a, b) => a.score < b.score ? 1 : -1 )
+        let players = this.props.selectedPlayers.filter( player => this.props.playersToCompare.includes(player._id))
         return (
             <div className="multi-player-compare">
                 {
-                    this.props.playersToCompare && 
-                    this.props.playersToCompare.map( player => {
+                    players.map( player => {
                         return (
                             <div
                                 key={player.playerFullName}

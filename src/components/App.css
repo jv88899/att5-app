@@ -59,3 +59,13 @@ body {
   justify-content: space-between;
   width: 40%;
 }
+
+.search-container {
+  text-align: right;
+  width: 60%;
+}
+
+.search-container input {
+  height: 40px;
+  width: 60%;
+}

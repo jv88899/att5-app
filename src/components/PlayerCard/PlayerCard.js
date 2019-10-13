@@ -8,11 +8,15 @@ class PlayerCard extends Component {
         active: false
     }
 
-    handleClick = (e, player) => {
+    handleClick = (e, playerId) => {
         // e.preventDefault()
-        console.log('player here is', player)
+        console.log('playerId here is', playerId)
+        if (this.state.active) {
+            // this.props.removePlayerToCompare(playerId)
+        } else {
+            this.props.addPlayerToCompare(playerId)
+        }
         this.setState({ active: !this.state.active })
-        this.props.addPlayerToCompare(player)
     }
 
     render() {
@@ -23,7 +27,7 @@ class PlayerCard extends Component {
             <div
                 className={cssClass}
                 onClick={(e) => {
-                    this.handleClick(e, player)
+                    this.handleClick(e, player._id)
                 }}
             >
 

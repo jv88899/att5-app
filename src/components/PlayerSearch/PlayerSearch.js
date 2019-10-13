@@ -23,7 +23,7 @@ class PlayerSearch extends Component {
             setTimeout( () => {
                 this.props.handlePlayerSearchChange(this.state.searchTerm)
                 this.setState({ searching: false })
-            }, 3000)
+            }, 2000)
         }
     }
 

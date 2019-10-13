@@ -187,14 +187,14 @@ class App extends Component {
     })
   }
 
-  addPlayerToCompare = (player) => {
+  addPlayerToCompare = (playerId) => {
     const { playersToCompare } = this.state
-    if (playersToCompare.filter(p => p._id === player._id).length > 0) {
-      let newPlayersToCompare = playersToCompare.filter( newPlayer => newPlayer._id !== player._id)
-      this.setState({ playersToCompare: newPlayersToCompare })
-    } else {
-      this.setState({ playersToCompare: playersToCompare.concat(player) })
-    }
+    this.setState({ playersToCompare: playersToCompare.concat(playerId) })
+  }
+
+  removePlayerToCompare = (playerId) => {
+    const { playersToCompare } = this.state
+    this.setState({ playersToCompare: playersToCompare.filter( id => id !== playerId) })
   }
 
   clearPlayersToCompare = () => {
@@ -235,7 +235,7 @@ class App extends Component {
                     selectAllTimeStartingFive={this.selectAllTimeStartingFive}
                   />
                 </div>
-                <div>
+                <div className="search-container">
                   <PlayerSearch
                     handlePlayerSearchChange={this.handlePlayerSearchChange}
                   />
@@ -251,6 +251,7 @@ class App extends Component {
                 calculateScore={this.calculateScore}
                 handleSelectScoreInformation={this.handleSelectScoreInformation}
                 addPlayerToCompare={this.addPlayerToCompare}
+                removePlayerToCompare={this.removePlayerToCompare}
               />
             }
           />
@@ -272,6 +273,7 @@ class App extends Component {
                 addPlayerToCompare={this.addPlayerToCompare}
                 playersToCompare={this.state.playersToCompare}
                 clearPlayersToCompare={this.clearPlayersToCompare}
+                selectedPlayers={this.state.selectedPlayers}
               />
             }
           />
