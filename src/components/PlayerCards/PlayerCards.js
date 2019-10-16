@@ -5,7 +5,13 @@ import './player-cards.css'
 class PlayerCards extends Component {
     
     render() {
-        const { players, handleSelectScoreInformation, addPlayerToCompare } = this.props
+        // const { players, handleSelectScoreInformation, addPlayerToCompare } = this.props
+        const {
+            players,
+            handleSelectScoreInformation,
+            addPlayerToCompare,
+            removePlayerToCompare
+        } = this.props
         return(
             <div className="player-cards">
                 {
@@ -19,6 +25,8 @@ class PlayerCards extends Component {
                                     player={player}
                                     handleSelectScoreInformation={handleSelectScoreInformation}
                                     addPlayerToCompare={addPlayerToCompare}
+                                    removePlayerToCompare={removePlayerToCompare}
+                                    playerCardIsClickable={true}
                                 />
                             </div>
                         )

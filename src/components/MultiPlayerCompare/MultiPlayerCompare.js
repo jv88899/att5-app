@@ -12,7 +12,7 @@ class MultiPlayerCompare extends Component {
     }
 
     render() {
-        // this.state.playersToCompare.sort( (a, b) => a.score < b.score ? 1 : -1 )
+        this.state.playersToCompare.sort( (a, b) => a.score < b.score ? 1 : -1 )
         let players = this.props.selectedPlayers.filter( player => this.props.playersToCompare.includes(player._id))
         return (
             <div className="multi-player-compare">
@@ -27,8 +27,12 @@ class MultiPlayerCompare extends Component {
                                     player={player}
                                     handleSelectScoreInformation={this.props.handleSelectScoreInformation}
                                     addPlayerToCompare={ (player) => {
-                                        console.log('the player is', player)
+                                        return null
                                     }}
+                                    removePlayerToCompare={ (player) => {
+                                        return null
+                                    }}
+                                    playerCardIsClickable={false}
                                 />
                             </div>
                         )

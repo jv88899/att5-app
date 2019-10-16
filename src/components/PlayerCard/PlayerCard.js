@@ -5,14 +5,13 @@ import './player-card.css'
 class PlayerCard extends Component {
     state = {
         modalVisible: false,
-        active: false
+        active: false,
+        clickable: true
     }
 
     handleClick = (e, playerId) => {
-        // e.preventDefault()
-        console.log('playerId here is', playerId)
         if (this.state.active) {
-            // this.props.removePlayerToCompare(playerId)
+            this.props.removePlayerToCompare(playerId)
         } else {
             this.props.addPlayerToCompare(playerId)
         }
@@ -22,7 +21,8 @@ class PlayerCard extends Component {
     render() {
         const { player, handleSelectScoreInformation } = this.props
         let cssClass = 'player-card'
-        this.state.active ? cssClass = 'player-card active' : cssClass = 'player-card'
+        this.state.active && this.props.playerCardIsClickable ? cssClass = 'player-card active' : cssClass = 'player-card'
+
         return (
             <div
                 className={cssClass}
@@ -44,7 +44,7 @@ class PlayerCard extends Component {
                 </div>
                 <div
                     className="player-card-footer"
-                    onClick={ () => console.log('workinggggggggg') }
+                    onClick={ () => null }
                 >
                     <h3>Score: {player.score}</h3>
                     <FaInfoCircle

@@ -283,6 +283,7 @@ class App extends Component {
                 playersToCompare={playersToCompare}
                 clearPlayersToCompare={this.clearPlayersToCompare}
                 selectedPlayers={selectedPlayers}
+                removePlayerToCompare={this.removePlayerToCompare}
               />
             }
           />

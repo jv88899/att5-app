@@ -9,7 +9,6 @@ const ScoreInformationModal = props => {
         classes = 'score-information-modal-container visible'
     }
 
-    console.log('selectedplyaer is', selectedPlayer)
     return (
         <div className={classes}>
             <div className="score-information-modal">
