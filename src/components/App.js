@@ -226,12 +226,17 @@ class App extends Component {
                 <span>
                   <Link to="/">All Time Starting Five</Link>
                 </span>
+                {/*
                 <span>
                   <Link to="/battle">Battle</Link>
                 </span>
+                */}
+                {
+                  this.state.playersToCompare.length > 1 &&
                 <span>
                     <Link to="/results">Compare Players</Link>
                 </span>
+                }
               </div>
               <div className="app-menu-container">
                 <div className="position-menu">
@@ -264,6 +269,7 @@ class App extends Component {
               />
             }
           />
+          {/*
           <Route
             path='/battle'
             exact={true}
@@ -274,6 +280,7 @@ class App extends Component {
               />
             }
           />
+          */}
           <Route
             path='/results'
             exact={true}

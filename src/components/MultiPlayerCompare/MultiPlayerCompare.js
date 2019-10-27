@@ -38,6 +38,14 @@ class MultiPlayerCompare extends Component {
                         )
                     })
                 }
+                <div>
+                {console.log(this.props.playersToCompare.length)}
+                    {
+                        // console.log(this.props.playersToCompare)
+                        this.props.playersToCompare.length <= 0 &&
+                        <p>Choose 2 or more players to compare</p>
+                    }
+                </div>
             </div>
         )
     }
