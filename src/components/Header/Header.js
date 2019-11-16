@@ -45,6 +45,46 @@ class Header extends Component {
                             <h2>Current Criteria</h2>
                         </div>
                         <div className="header__criteria__summary">
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    PPG
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    3
+                                </div>
+                            </div>
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    PER
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    3
+                                </div>
+                            </div>
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    CHA
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    3
+                                </div>
+                            </div>
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    NBA
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    3
+                                </div>
+                            </div>
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    MVP
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    3
+                                </div>
+                            </div>
                         </div>
                     </React.Fragment>
                     <div className={headerCriteriaMenuClassess}>
