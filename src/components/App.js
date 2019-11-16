@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import AllTimeStartingFive from './AllTimeStartingFive/AllTimeStartingFive'
 import CriteriaForm from './CriteriaForm/CriteriaForm'
 import MultiPlayerCompare from './MultiPlayerCompare/MultiPlayerCompare'
-import PlayerBattle from './PlayerBattle/PlayerBattle'
+// import PlayerBattle from './PlayerBattle/PlayerBattle'
 import PlayerCards from './PlayerCards/PlayerCards'
 import PlayerSearch from './PlayerSearch/PlayerSearch'
 import PositionMenu from './PositionMenu/PositionMenu'
@@ -208,8 +208,8 @@ class App extends Component {
       selectedPlayers,
       selectedPlayer,
       scoreInformationModalVisible,
-      playerOne,
-      playerTwo,
+      // playerOne,
+      // playerTwo,
       playersToCompare
     } = this.state
     return (
