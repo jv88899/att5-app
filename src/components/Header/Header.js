@@ -4,7 +4,19 @@ import 'rc-slider/assets/index.css'
 import './header.css'
 
 class Header extends Component {
+    state = {
+        criteriaMenuVisible: false,
+    }
+
     render() {
+        const {
+            currentCriteria
+        } = this.props
+
+        const {
+            criteriaMenuVisible
+        } = this.state
+
         let headerCriteriaMenuClassess = 'header__criteria__menu'
         return (
             <header className="header">
@@ -50,7 +62,7 @@ class Header extends Component {
                                     PPG
                                 </div>
                                 <div className="header__criteria__summary__value">
-                                    3
+                                    {currentCriteria.ppg}
                                 </div>
                             </div>
                             <div className="header__criteria__summary__group">
@@ -58,7 +70,7 @@ class Header extends Component {
                                     PER
                                 </div>
                                 <div className="header__criteria__summary__value">
-                                    3
+                                    {currentCriteria.per}
                                 </div>
                             </div>
                             <div className="header__criteria__summary__group">
@@ -66,7 +78,7 @@ class Header extends Component {
                                     CHA
                                 </div>
                                 <div className="header__criteria__summary__value">
-                                    3
+                                    {currentCriteria.championships}
                                 </div>
                             </div>
                             <div className="header__criteria__summary__group">
@@ -74,7 +86,7 @@ class Header extends Component {
                                     NBA
                                 </div>
                                 <div className="header__criteria__summary__value">
-                                    3
+                                    {currentCriteria.allNBA}
                                 </div>
                             </div>
                             <div className="header__criteria__summary__group">
@@ -82,7 +94,7 @@ class Header extends Component {
                                     MVP
                                 </div>
                                 <div className="header__criteria__summary__value">
-                                    3
+                                    {currentCriteria.mvp}
                                 </div>
                             </div>
                         </div>
@@ -171,7 +183,7 @@ class Header extends Component {
                     </div>
                     <div className="header__criteria__button">
                         {
-                            false ?
+                            criteriaMenuVisible ?
                             <div className="header__criteria__button__container">
                                 <button
                                     className="header__criteria__button__set"
@@ -189,6 +201,28 @@ class Header extends Component {
                                 View Criteria
                             </button>
                         }
+                    </div>
+                </div>
+                <div className="header__position-menu">
+                    <div className="header__position-menu__wrapper">
+                        <div>
+                            <button>All</button>
+                        </div>
+                        <div>
+                            <button>PG</button>
+                        </div>
+                        <div>
+                            <button>SG</button>
+                        </div>
+                        <div>
+                            <button>SF</button>
+                        </div>
+                        <div>
+                            <button>PF</button>
+                        </div>
+                        <div>
+                            <button>C</button>
+                        </div>
                     </div>
                 </div>
                 <div className="header__search">

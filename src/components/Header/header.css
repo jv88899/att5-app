@@ -157,6 +157,33 @@
     width: 40%;
 }
 
+.header__position-menu {
+    border-top: 1px solid grey;
+    margin: 10px auto;
+    max-width: 1200px;
+    padding: 10px 10px;
+}
+
+.header__position-menu__wrapper {
+    align-items: center;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    outline: 1px solid red;
+}
+
+.header__position-menu__wrapper div {
+    align-items: center;
+    display: flex;
+    height: 40px;
+    width: 40px;
+}
+
+.header__position-menu__wrapper div button {
+    text-align: center;
+    width: 40px;
+}
+
 .header__search {
     margin: 0 auto;
     max-width: 1200px;
