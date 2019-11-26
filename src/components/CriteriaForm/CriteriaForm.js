@@ -1,190 +1,176 @@
 import React, { Component } from 'react'
-import './criteria-form.css'
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css'
 
 class CriteriaForm extends Component {
     state = {
-        criteria: {
+        currentCriteria: {
             per: 1,
             championships: 1,
             ppg: 1,
             mvp: 1,
             allNBA: 1
-        }
-    }
-
-    handleCriteriaChange = (criteriaToUpdate, newValue) => {
-        if (criteriaToUpdate === 'per') {
-            this.setState( (prevState) => ({
-                criteria: {
-                    per: newValue,
-                    championships: prevState.criteria.championships,
-                    ppg: prevState.criteria.ppg,
-                    mvp: prevState.criteria.mvp,
-                    allNBA: prevState.criteria.allNBA
-                }
-            }))
-        } else if (criteriaToUpdate === 'championships') {
-            this.setState( prevState => ({
-                criteria: {
-                    per: prevState.criteria.per,
-                    championships: newValue,
-                    ppg: prevState.criteria.ppg,
-                    mvp: prevState.criteria.mvp,
-                    allNBA: prevState.criteria.allNBA
-                }
-            }))
-        } else if (criteriaToUpdate === 'ppg') {
-            this.setState( prevState => ({
-                criteria: {
-                    per: prevState.criteria.per,
-                    championships: prevState.criteria.championships,
-                    ppg: newValue,
-                    mvp: prevState.criteria.mvp,
-                    allNBA: prevState.criteria.allNBA
-                }
-            }))
-        } else if (criteriaToUpdate === 'mvp') {
-            this.setState( prevState => ({
-                criteria: {
-                    per: prevState.criteria.per,
-                    championships: prevState.criteria.championships,
-                    ppg: prevState.criteria.ppg,
-                    mvp: newValue,
-                    allNBA: prevState.criteria.allNBA
-                }
-            }))
-        } else if (criteriaToUpdate === 'allNBA') {
-            this.setState( prevState => ({
-                criteria: {
-                    per: prevState.criteria.per,
-                    championships: prevState.criteria.championships,
-                    ppg: prevState.criteria.ppg,
-                    mvp: prevState.criteria.mvp,
-                    allNBA: newValue
-                }
-            }))
-        }
-    }
-
-    handleSubmit = e => {
-        e.preventDefault()
+        },
+        criteriaMenuVisible: false
     }
 
     render() {
-        const { handleCriteriaFormSubmit } = this.props
+        const { currentCriteria, criteriaMenuVisible } = this.state
+
+        let headerCriteriaMenuClasses = 'header__criteria__menu'
         return (
-            <form
-                className="criteria-form-container"
-                onSubmit={this.handleSubmit}
-            >
-                <label htmlFor="per">PER</label>
-                <select
-                    name="per"
-                    onChange={ (e) => {
-                        let criteria = 'per'
-                        let newPer = e.target.value
-                        // console.log(typeof newPer)
-                        newPer = parseFloat(newPer)
-                        // console.log(typeof newPer)
-                        this.handleCriteriaChange(criteria, newPer)
-                    }}
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <label htmlFor="championships">Championships</label>
-                <select
-                    name="championships"
-                    onChange={ (e) => {
-                        let criteria = 'championships'
-                        let newChampionships = parseFloat(e.target.value)
-                        // console.log(typeof newChampionships)
-                        this.handleCriteriaChange(criteria, newChampionships)
-                    } }
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <label htmlFor="ppg">PPG</label>
-                <select
-                    name="ppg"
-                    onChange={ e => {
-                        let criteria = 'ppg'
-                        let newPPG = parseFloat(e.target.value)
-                        this.handleCriteriaChange(criteria, newPPG)
-                    } }
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <label htmlFor="mvp">MVP</label>
-                <select
-                    name="mvp"
-                    onChange= { e => {
-                        let criteria = 'mvp'
-                        let newMVP = parseFloat(e.target.value)
-                        this.handleCriteriaChange(criteria, newMVP)
-                    }}
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <label htmlFor="allNBA">All NBA</label>
-                <select
-                    name="allNBA"
-                    onChange={ e => {
-                        let criteria = 'allNBA'
-                        let newAllNBA = parseFloat(e.target.value)
-                        this.handleCriteriaChange(criteria, newAllNBA)
-                    }}
-                >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                </select>
-                <button
-                    type="submit"
-                    onClick={ () => {
-                        handleCriteriaFormSubmit(this.state.criteria)
-                    }}
-                >
-                    Set Criteria
-                </button>
-            </form>
+            <div className="header__criteria">
+                <React.Fragment>
+                    <div className="header__criteria__title">
+                        <h2>Current Ctiteria</h2>
+                    </div>
+                    <div className="header__criteria__summary">
+                        <div className="header__criteria__summary__group">
+                            <div className="header__criteria__summary__category">
+                                PPG
+                            </div>
+                            <div className="header__criteria__summary__value">
+                                {currentCriteria.ppg}
+                            </div>
+                        </div>
+                        <div className="header__criteria__summary__group">
+                            <div className="header__criteria__summary__category">
+                                PER
+                            </div>
+                            <div className="header__criteria__summary__value">
+                                {currentCriteria.per}
+                            </div>
+                        </div>
+                        <div className="header__criteria__summary__group">
+                            <div className="header__criteria__summary__category">
+                                CHA
+                            </div>
+                            <div className="header__criteria__summary__value">
+                                {currentCriteria.championships}
+                            </div>
+                        </div>
+                        <div className="header__criteria__summary__group">
+                            <div className="header__criteria__summary__category">
+                                NBA
+                            </div>
+                            <div className="header__criteria__summary__value">
+                                {currentCriteria.allNBA}
+                            </div>
+                        </div>
+                        <div className="header__criteria__summary__group">
+                            <div className="header__criteria__summary__category">
+                                MVP
+                            </div>
+                            <div className="header__criteria__summary__value">
+                                {currentCriteria.allNBA}
+                            </div>
+                        </div>
+                    </div>
+                </React.Fragment>
+                <div className={headerCriteriaMenuClasses}>
+                    <div className="header__criteria__slider__group">
+                        <div className="header__slider__label">
+                            PPG
+                        </div>
+                        <div className="header__slider">
+                            <Slider
+                                defaultValue={1}
+                                min={1}
+                                max={9}
+                                step={1}
+                            />
+                        </div>
+                        <div className="header__slider__value">
+                            {currentCriteria.ppg}
+                        </div>
+                    </div>
+                    <div className="header__criteria__slider__group">
+                        <div className="header__slider__label">
+                            PER
+                        </div>
+                        <div className="header__slider">
+                            <Slider
+                                defaultValue={1}
+                                min={1}
+                                max={9}
+                                step={1}
+                            />
+                        </div>
+                        <div className="header__slider__value">
+                            {currentCriteria.per}
+                        </div>
+                    </div>
+                    <div className="header__criteria__slider__group">
+                        <div className="header__slider__label">
+                            CHA
+                        </div>
+                        <div className="header__slider">
+                            <Slider
+                                defaultValue={1}
+                                min={1}
+                                max={9}
+                                step={1}
+                            />
+                        </div>
+                        <div className="header__slider__value">
+                            {currentCriteria.championships}
+                        </div>
+                    </div>
+                    <div className="header__criteria__slider__group">
+                        <div className="header__slider__label">
+                            NBA
+                        </div>
+                        <div className="header__slider">
+                            <Slider
+                                defaultValue={1}
+                                min={1}
+                                max={9}
+                                step={1}
+                            />
+                        </div>
+                        <div className="header__slider__value">
+                            {currentCriteria.allNBA}
+                        </div>
+                    </div>
+                    <div className="header__criteria__slider__group">
+                        <div className="header__slider__label">
+                            MVP
+                        </div>
+                        <div className="header__slider">
+                            <Slider
+                                defaultValue={1}
+                                min={1}
+                                max={9}
+                                step={1}
+                            />
+                        </div>
+                        <div className="header__slider__value">
+                            {currentCriteria.mvp}
+                        </div>
+                    </div>
+                </div>
+                <div className="header__criteria__button">
+                    {
+                        criteriaMenuVisible ?
+                        <div className="header__criteria__button__container">
+                            <button
+                                className="header__criteria__button__set"
+                            >
+                                Change Criteria
+                            </button>
+                            <button
+                                className="header__criteria__button__close"
+                            >
+                                Close Menu
+                            </button>
+                        </div> :
+                        <button
+                        >
+                            View Criteria
+                        </button>
+                    }
+                </div>
+            </div>
         )
     }
 }
