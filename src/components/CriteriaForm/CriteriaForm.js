@@ -11,62 +11,127 @@ class CriteriaForm extends Component {
             mvp: 1,
             allNBA: 1
         },
-        criteriaMenuVisible: false
+        criteriaMenuVisible: true
+    }
+
+    changeLevel = (e, sliderToUpdate) => {
+        if (sliderToUpdate === 'sliderPER') {
+            this.setState( prevState => ({
+                currentCriteria: {
+                    per: e,
+                    championships: prevState.currentCriteria.championships,
+                    ppg: prevState.currentCriteria.ppg,
+                    mvp: prevState.currentCriteria.mvp,
+                    allNBA: prevState.currentCriteria.allNBA
+                }
+            }))
+        } else if (sliderToUpdate === 'sliderChampionships') {
+            this.setState( prevState => ({
+                currentCriteria: {
+                    per: prevState.currentCriteria.per,
+                    championships: e,
+                    ppg: prevState.currentCriteria.ppg,
+                    mvp: prevState.currentCriteria.mvp,
+                    allNBA: prevState.currentCriteria.allNBA
+                }
+            }))
+        } else if (sliderToUpdate === 'sliderPPG') {
+            this.setState( prevState => ({
+                currentCriteria: {
+                    per: prevState.currentCriteria.per,
+                    championships: prevState.currentCriteria.championships,
+                    ppg: e,
+                    mvp: prevState.currentCriteria.mvp,
+                    allNBA: prevState.currentCriteria.allNBA
+                }
+            }))
+        } else if (sliderToUpdate === 'sliderMVP') {
+            this.setState( prevState => ({
+                currentCriteria: {
+                    per: prevState.currentCriteria.per,
+                    championships: prevState.currentCriteria.championships,
+                    ppg: prevState.currentCriteria.ppg,
+                    mvp: e,
+                    allNBA: prevState.currentCriteria.allNBA
+                }
+            }))
+        } else if (sliderToUpdate === 'sliderAllNBA') {
+            this.setState( prevState => ({
+                currentCriteria: {
+                    per: prevState.currentCriteria.per,
+                    championships: prevState.currentCriteria.championships,
+                    ppg: prevState.currentCriteria.ppg,
+                    mvp: prevState.currentCriteria.mvp,
+                    allNBA: e
+                }
+            }))
+        }
+    }
+
+    handleViewCriteria = () => {
+        this.setState({ criteriaMenuVisible: !this.state.criteriaMenuVisible })
     }
 
     render() {
         const { currentCriteria, criteriaMenuVisible } = this.state
 
         let headerCriteriaMenuClasses = 'header__criteria__menu'
+        if (criteriaMenuVisible) {
+            headerCriteriaMenuClasses = 'header__criteria__menu visible'
+        }
+
         return (
             <div className="header__criteria">
-                <React.Fragment>
-                    <div className="header__criteria__title">
-                        <h2>Current Ctiteria</h2>
-                    </div>
-                    <div className="header__criteria__summary">
-                        <div className="header__criteria__summary__group">
-                            <div className="header__criteria__summary__category">
-                                PPG
+                {
+                    ! criteriaMenuVisible &&
+                    <React.Fragment>
+                        <div className="header__criteria__title">
+                            <h2>Current Ctiteria</h2>
+                        </div>
+                        <div className="header__criteria__summary">
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    PPG
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    {currentCriteria.ppg}
+                                </div>
                             </div>
-                            <div className="header__criteria__summary__value">
-                                {currentCriteria.ppg}
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    PER
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    {currentCriteria.per}
+                                </div>
+                            </div>
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    CHA
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    {currentCriteria.championships}
+                                </div>
+                            </div>
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    NBA
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    {currentCriteria.allNBA}
+                                </div>
+                            </div>
+                            <div className="header__criteria__summary__group">
+                                <div className="header__criteria__summary__category">
+                                    MVP
+                                </div>
+                                <div className="header__criteria__summary__value">
+                                    {currentCriteria.mvp}
+                                </div>
                             </div>
                         </div>
-                        <div className="header__criteria__summary__group">
-                            <div className="header__criteria__summary__category">
-                                PER
-                            </div>
-                            <div className="header__criteria__summary__value">
-                                {currentCriteria.per}
-                            </div>
-                        </div>
-                        <div className="header__criteria__summary__group">
-                            <div className="header__criteria__summary__category">
-                                CHA
-                            </div>
-                            <div className="header__criteria__summary__value">
-                                {currentCriteria.championships}
-                            </div>
-                        </div>
-                        <div className="header__criteria__summary__group">
-                            <div className="header__criteria__summary__category">
-                                NBA
-                            </div>
-                            <div className="header__criteria__summary__value">
-                                {currentCriteria.allNBA}
-                            </div>
-                        </div>
-                        <div className="header__criteria__summary__group">
-                            <div className="header__criteria__summary__category">
-                                MVP
-                            </div>
-                            <div className="header__criteria__summary__value">
-                                {currentCriteria.allNBA}
-                            </div>
-                        </div>
-                    </div>
-                </React.Fragment>
+                    </React.Fragment>
+                }
                 <div className={headerCriteriaMenuClasses}>
                     <div className="header__criteria__slider__group">
                         <div className="header__slider__label">
@@ -78,6 +143,9 @@ class CriteriaForm extends Component {
                                 min={1}
                                 max={9}
                                 step={1}
+                                onAfterChange={(e) => {
+                                    this.changeLevel(e, 'sliderPPG')
+                                }}
                             />
                         </div>
                         <div className="header__slider__value">
@@ -94,6 +162,9 @@ class CriteriaForm extends Component {
                                 min={1}
                                 max={9}
                                 step={1}
+                                onAfterChange={(e) => {
+                                    this.changeLevel(e, 'sliderPER')
+                                }}
                             />
                         </div>
                         <div className="header__slider__value">
@@ -110,6 +181,9 @@ class CriteriaForm extends Component {
                                 min={1}
                                 max={9}
                                 step={1}
+                                onAfterChange={(e) => {
+                                    this.changeLevel(e, 'sliderChampionships')
+                                }}
                             />
                         </div>
                         <div className="header__slider__value">
@@ -126,6 +200,9 @@ class CriteriaForm extends Component {
                                 min={1}
                                 max={9}
                                 step={1}
+                                onAfterChange={(e) => {
+                                    this.changeLevel(e, 'sliderAllNBA')
+                                }}
                             />
                         </div>
                         <div className="header__slider__value">
@@ -142,6 +219,9 @@ class CriteriaForm extends Component {
                                 min={1}
                                 max={9}
                                 step={1}
+                                onAfterChange={(e) => {
+                                    this.changeLevel(e, 'sliderMVP')
+                                }}
                             />
                         </div>
                         <div className="header__slider__value">
@@ -160,11 +240,13 @@ class CriteriaForm extends Component {
                             </button>
                             <button
                                 className="header__criteria__button__close"
+                                onClick={this.handleViewCriteria}
                             >
                                 Close Menu
                             </button>
                         </div> :
                         <button
+                            onClick={this.handleViewCriteria}
                         >
                             View Criteria
                         </button>
