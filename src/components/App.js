@@ -19,13 +19,18 @@ class App extends Component {
     }
 
     render() {
+        const {
+            selectedPlayers
+        } = this.state
         return (
             <div>
                 <Header
                     currentCriteria={this.state.criteria}
                     handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
                 />
-                <PlayerCards />
+                <PlayerCards
+                    players={selectedPlayers}
+                />
             </div>
         )
     }
