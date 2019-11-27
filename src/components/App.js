@@ -15,6 +15,17 @@ class App extends Component {
         selectedPlayers: []
     }
 
+    getInitialPlayers = async () => {
+        const response = await fetch('/api/v3/players/All')
+        const body = await response.json()
+
+        if (response.status !== 200) {
+            throw Error(body.message)
+        }
+
+        return body
+    }
+
     handleCriteriaFormSubmit = () => {
         console.log('working')
     }
