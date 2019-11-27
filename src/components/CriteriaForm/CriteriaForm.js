@@ -236,7 +236,9 @@ class CriteriaForm extends Component {
                         <div className="header__criteria__button__container">
                             <button
                                 className="header__criteria__button__set"
-                                onClick={handleCriteriaFormSubmit}
+                                onClick={ () => {
+                                    handleCriteriaFormSubmit(currentCriteria)
+                                }}
                             >
                                 Change Criteria
                             </button>

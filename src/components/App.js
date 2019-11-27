@@ -12,7 +12,9 @@ class App extends Component {
             mvp: 1,
             allNBA: 1
         },
-        selectedPlayers: []
+        selectedPlayers: [],
+        selectedPosition: 'All',
+        searchCriteria: ''
     }
 
     componentDidMount = () => {
@@ -34,9 +36,32 @@ class App extends Component {
         return body
     }
 
-    handleCriteriaFormSubmit = () => {
-        console.log('working')
-    }
+    handleCriteriaFormSubmit = async newCriteria => {
+        const { selectedPosition, searchCriteria } = this.state
+        const response = await fetch('/api/v3/players', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            criteria: newCriteria,
+            selectedPosition: selectedPosition,
+            searchCriteria: searchCriteria
+          })
+        })
+        const body = await response.json()
+        const newPlayers = body.players
+    
+        if (response.status !== 200) {
+          throw Error(body.message)
+        }
+    
+        this.setState({
+          selectedPlayers: newPlayers,
+          criteria: newCriteria
+        })
+      }
 
     render() {
         const {
