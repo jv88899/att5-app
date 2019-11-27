@@ -74,6 +74,7 @@ class CriteriaForm extends Component {
 
     render() {
         const { currentCriteria, criteriaMenuVisible } = this.state
+        const { handleCriteriaFormSubmit } =  this.props
 
         let headerCriteriaMenuClasses = 'header__criteria__menu'
         if (criteriaMenuVisible) {
@@ -83,10 +84,10 @@ class CriteriaForm extends Component {
         return (
             <div className="header__criteria">
                 {
-                    ! criteriaMenuVisible &&
+                    !criteriaMenuVisible &&
                     <React.Fragment>
                         <div className="header__criteria__title">
-                            <h2>Current Ctiteria</h2>
+                            <h2>Current Criteria</h2>
                         </div>
                         <div className="header__criteria__summary">
                             <div className="header__criteria__summary__group">
@@ -235,6 +236,7 @@ class CriteriaForm extends Component {
                         <div className="header__criteria__button__container">
                             <button
                                 className="header__criteria__button__set"
+                                onClick={handleCriteriaFormSubmit}
                             >
                                 Change Criteria
                             </button>

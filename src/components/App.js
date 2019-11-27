@@ -13,10 +13,15 @@ class App extends Component {
         }
     }
 
+    handleCriteriaFormSubmit = () => {
+        console.log('working')
+    }
+
     render() {
         return (
             <Header
                 currentCriteria={this.state.criteria}
+                handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
             />
         )
     }

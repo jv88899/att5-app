@@ -52,7 +52,9 @@ class Header extends Component {
                     <h1>All Time Starting Five</h1>
                     <p>The best players of all time, according to you</p>
                 </div>
-                <CriteriaForm />
+                <CriteriaForm
+                    handleCriteriaFormSubmit={this.props.handleCriteriaFormSubmit}
+                />
                 <div className="header__position-menu">
                     <div className="header__position-menu__wrapper">
                         <div>
