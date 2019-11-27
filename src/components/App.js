@@ -15,6 +15,14 @@ class App extends Component {
         selectedPlayers: []
     }
 
+    componentDidMount = () => {
+        this.getInitialPlayers()
+            .then(res => this.setState({
+                selectedPlayers: res.data.players
+            }))
+            .catch(err => console.log(err))
+    }
+
     getInitialPlayers = async () => {
         const response = await fetch('/api/v3/players/All')
         const body = await response.json()
