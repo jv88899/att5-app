@@ -11,7 +11,8 @@ class App extends Component {
             ppg: 1,
             mvp: 1,
             allNBA: 1
-        }
+        },
+        selectedPlayers: []
     }
 
     handleCriteriaFormSubmit = () => {
