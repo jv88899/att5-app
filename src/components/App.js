@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from './Header/Header'
+import PlayerCards from './PlayerCards/PlayerCards'
 import './App.css'
 
 class App extends Component {
@@ -19,10 +20,13 @@ class App extends Component {
 
     render() {
         return (
-            <Header
-                currentCriteria={this.state.criteria}
-                handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
-            />
+            <div>
+                <Header
+                    currentCriteria={this.state.criteria}
+                    handleCriteriaFormSubmit={this.handleCriteriaFormSubmit}
+                />
+                <PlayerCards />
+            </div>
         )
     }
 }
